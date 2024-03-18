@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { View, Text, Button, Pressable, Image, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
-import * as UserUtils from "../userUtils";
+import * as UserUtils from "../utils/userUtils";
 
 const ProfileAvatar = ({ data: { firstName, lastName, imagePath } }) => {
   const [avatarPath, setAvatarPath] = useState(imagePath);
