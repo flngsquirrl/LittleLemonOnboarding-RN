@@ -1,34 +1,43 @@
-import { useContext } from "react";
-import { View, Text, Pressable, Image, StyleSheet } from "react-native";
+import { useState, useEffect } from "react";
+import { View, Text, Button, Pressable, Image, StyleSheet } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 
-import UserContext from "../UserContext";
-import { getUserAvatarPath } from "../fileUtils";
 import * as UserUtils from "../userUtils";
 
-const ProfileAvatar = () => {
-  const { user, setUser } = useContext(UserContext);
+const ProfileAvatar = ({ data: { firstName, lastName, imagePath } }) => {
+  const [avatarPath, setAvatarPath] = useState(imagePath);
+  const [initials, setInitials] = useState(null);
 
-  const avatarPath = getUserAvatarPath();
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
-  let avatarSource;
-  let initials;
-  if (user.hasAvatar) {
-    avatarSource = { uri: avatarPath };
-  } else {
-    initials = UserUtils.getInitials(user.firstName, user.lastName);
-  }
+    if (!result.canceled) {
+      setAvatarPath(result.assets[0].uri);
+    }
+  };
+
+  useEffect(() => {
+    setInitials(UserUtils.getInitials(firstName, lastName));
+  }, []);
 
   return (
     <>
-      <Pressable>
-        <View style={[styles.container, !user.hasAvatar && styles.textContainer]}>
-          {user.hasAvatar ? (
-            <Image style={styles.image} source={avatarSource} alt='Avatar' />
+      <Pressable onPress={pickImage}>
+        <View style={[styles.container, !avatarPath && styles.textContainer]}>
+          {avatarPath ? (
+            <Image style={styles.image} source={{ uri: avatarPath }} alt='Avatar' />
           ) : (
             <Text style={styles.text}>{initials}</Text>
           )}
         </View>
       </Pressable>
+      <Button title='Clear avatar' onPress={() => setAvatarPath("")} />
     </>
   );
 };

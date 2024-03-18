@@ -13,7 +13,7 @@ const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
-      <ProfileAvatar />
+      <ProfileAvatar data={{ ...user, imagePath: "" }} />
       <Text>{user.firstName}</Text>
       <Button
         title='Switch user'
