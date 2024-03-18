@@ -5,7 +5,7 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import UserContext from "../UserContext";
 
 // test imports
-import { switchUser, MOCK_CURRENT_USER } from "../UserContext";
+import { MOCK_CURRENT_USER } from "../UserContext";
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
@@ -15,13 +15,6 @@ const ProfileScreen = () => {
       <Text style={styles.title}>Profile</Text>
       <ProfileAvatar data={{ ...user, imagePath: "" }} />
       <Text>{user.firstName}</Text>
-      <Button
-        title='Switch user'
-        onPress={() => {
-          switchUser();
-          setUser(MOCK_CURRENT_USER);
-        }}
-      />
       <Button title='Log out' onPress={() => setUser(null)} />
     </View>
   );
