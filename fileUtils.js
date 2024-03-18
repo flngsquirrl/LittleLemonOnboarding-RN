@@ -4,6 +4,8 @@ function getDocumentsDirectory() {
   return FileSystem.documentDirectory;
 }
 
+const USER_AVATAR_PATH = "user/avatar";
+
 export function getUserAvatarPath() {
-  return getDocumentsDirectory() + "user/avatar";
+  return getDocumentsDirectory() + USER_AVATAR_PATH;
 }
