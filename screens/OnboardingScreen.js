@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 
 // test imports
-import { MOCK_CURRENT_USER } from "../UserContext";
+import { MOCK_CURRENT_USER } from "../contexts/UserContext";
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);

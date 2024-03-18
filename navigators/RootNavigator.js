@@ -8,7 +8,7 @@ import OnboardingScreen from "../screens/OnboardingScreen";
 import MenuScreen from "../screens/MenuScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 
 const Stack = createNativeStackNavigator();
 

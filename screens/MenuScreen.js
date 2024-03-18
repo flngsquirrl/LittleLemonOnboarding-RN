@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 
 const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);

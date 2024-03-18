@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 import ProfileAvatar from "../components/ProfileAvatar";
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 
 // test imports
-import { MOCK_CURRENT_USER } from "../UserContext";
+import { MOCK_CURRENT_USER } from "../contexts/UserContext";
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
