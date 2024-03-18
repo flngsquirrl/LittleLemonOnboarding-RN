@@ -1,22 +1,36 @@
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 import ProfileAvatar from "../components/ProfileAvatar";
 import UserContext from "../contexts/UserContext";
+import ProfileContext from "../contexts/ProfileContext";
 
 // test imports
 import { MOCK_CURRENT_USER } from "../contexts/UserContext";
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
+  const [profile, setProfile] = useState({ ...user });
+
+  const saveChanges = () => {
+    // TODO: save avatar to app documents directory
+    // TODO: update user avatar path and data in the storage and in memory
+    const userAvatarPath = profile.avatarPath;
+    setUser({ ...profile, avatarPath: userAvatarPath });
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Profile</Text>
-      <ProfileAvatar data={{ ...user, imagePath: "" }} />
-      <Text>{user.firstName}</Text>
-      <Button title='Log out' onPress={() => setUser(null)} />
-    </View>
+    <ProfileContext.Provider value={{ profile, setProfile }}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Profile</Text>
+        <ProfileAvatar />
+        <Text>{profile.firstName}</Text>
+        <Text>{profile.hasAvatar ? "true" : "false"}</Text>
+        <Button title='Reset changes' onPress={() => setProfile({ ...user })} />
+        <Button title='Save changes' onPress={saveChanges} />
+        <Button title='Log out' onPress={() => setUser(null)} />
+      </View>
+    </ProfileContext.Provider>
   );
 };
 

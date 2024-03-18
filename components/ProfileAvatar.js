@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { View, Text, Button, Pressable, Image, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 import * as UserUtils from "../utils/userUtils";
 
-const ProfileAvatar = ({ data: { firstName, lastName, imagePath } }) => {
-  const [avatarPath, setAvatarPath] = useState(imagePath);
-  const [initials, setInitials] = useState(null);
+import ProfileContext from "../contexts/ProfileContext";
+
+const ProfileAvatar = () => {
+  const { profile, setProfile } = useContext(ProfileContext);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -18,26 +19,28 @@ const ProfileAvatar = ({ data: { firstName, lastName, imagePath } }) => {
     });
 
     if (!result.canceled) {
-      setAvatarPath(result.assets[0].uri);
+      setProfile({ ...profile, hasAvatar: true, avatarPath: result.assets[0].uri });
     }
   };
 
-  useEffect(() => {
-    setInitials(UserUtils.getInitials(firstName, lastName));
-  }, []);
+  const clearAvatar = () => {
+    setProfile({ ...profile, hasAvatar: false, avatarPath: "" });
+  };
+
+  const initials = UserUtils.getInitials(profile.firstName, profile.lastName);
 
   return (
     <>
       <Pressable onPress={pickImage}>
-        <View style={[styles.container, !avatarPath && styles.textContainer]}>
-          {avatarPath ? (
-            <Image style={styles.image} source={{ uri: avatarPath }} alt='Avatar' />
+        <View style={[styles.container, !profile.avatarPath && styles.textContainer]}>
+          {profile.avatarPath ? (
+            <Image style={styles.image} source={{ uri: profile.avatarPath }} alt='User avatar' />
           ) : (
             <Text style={styles.text}>{initials}</Text>
           )}
         </View>
       </Pressable>
-      <Button title='Clear avatar' onPress={() => setAvatarPath("")} />
+      <Button title='Clear avatar' onPress={clearAvatar} />
     </>
   );
 };

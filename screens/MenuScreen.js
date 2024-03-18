@@ -9,6 +9,7 @@ const MenuScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
       <Text>{user.firstName}</Text>
+      <Text>{user.hasAvatar ? "true" : "false"}</Text>
       <Button title='Profile' onPress={() => navigation.navigate("profile")} />
     </View>
   );
