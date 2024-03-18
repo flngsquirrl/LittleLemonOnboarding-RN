@@ -8,7 +8,7 @@ const MenuScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
-      <Text>{user.name}</Text>
+      <Text>{user.firstName}</Text>
       <Button title='Profile' onPress={() => navigation.navigate("profile")} />
     </View>
   );

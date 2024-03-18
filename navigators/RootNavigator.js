@@ -18,10 +18,10 @@ const RootNavigator = () => {
 
   useEffect(() => {
     // TODO: read isOnboardingComplete
-    setTimeout(() => {
-      setLoading(false);
-      //setUser({ name: "Julia" });
-    }, 5000);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 5000);
+    setLoading(false);
   }, []);
 
   if (isLoading) {

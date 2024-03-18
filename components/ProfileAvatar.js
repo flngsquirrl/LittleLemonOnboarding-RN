@@ -15,7 +15,7 @@ const ProfileAvatar = () => {
   if (user.hasAvatar) {
     avatarSource = { uri: avatarPath };
   } else {
-    initials = UserUtils.getInitials(user.name, "test");
+    initials = UserUtils.getInitials(user.firstName, user.lastName);
   }
 
   return (
