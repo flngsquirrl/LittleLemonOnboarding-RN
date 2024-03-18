@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { View, Text, Button, Pressable, Image, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
@@ -19,12 +19,16 @@ const ProfileAvatar = () => {
     });
 
     if (!result.canceled) {
-      setProfile({ ...profile, hasAvatar: true, avatarPath: result.assets[0].uri });
+      updateProfileAvatar(result.assets[0].uri);
     }
   };
 
   const clearAvatar = () => {
-    setProfile({ ...profile, hasAvatar: false, avatarPath: "" });
+    updateProfileAvatar("");
+  };
+
+  const updateProfileAvatar = (newAvatarPath) => {
+    setProfile({ ...profile, hasAvatar: !!newAvatarPath, avatarPath: newAvatarPath });
   };
 
   const initials = UserUtils.getInitials(profile.firstName, profile.lastName);
