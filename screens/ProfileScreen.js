@@ -1,10 +1,16 @@
+import { useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
+import UserContext from "../UserContext";
 
 const ProfileScreen = ({ navigation }) => {
+  const { user, setUser } = useContext(UserContext);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
-      <Button title='Log out' onPress={() => navigation.navigate("onboarding")} />
+      <Text>{user.name}</Text>
+      <Button title='Change name to Anna' onPress={() => setUser({ name: "Anna" })} />
+      <Button title='Log out' onPress={() => setUser(null)} />
     </View>
   );
 };
