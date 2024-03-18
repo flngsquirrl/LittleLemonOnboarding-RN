@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import UserContext from "../UserContext";
 
-const OnboardingScreen = ({ navigation }) => {
+const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
 
   return (

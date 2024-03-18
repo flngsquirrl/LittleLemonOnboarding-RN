@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import UserContext from "../UserContext";
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
 
   return (
