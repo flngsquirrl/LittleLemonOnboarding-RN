@@ -7,7 +7,7 @@ const USER_PATH = FileSystem.documentDirectory + USER_PATH_REL;
 const USER_AVATAR_PATH = FileSystem.documentDirectory + USER_AVATAR_PATH_REL;
 
 async function prepareUserDirectory() {
-  prepareDirectory(USER_PATH);
+  await prepareDirectory(USER_PATH);
 }
 
 export async function saveUserAvatar(fromUrl) {
