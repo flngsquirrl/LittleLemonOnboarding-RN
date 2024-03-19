@@ -2,9 +2,6 @@ import { useContext, useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import UserContext from "../contexts/UserContext";
 
-// test imports
-import { MOCK_CURRENT_USER } from "../contexts/UserContext";
-
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
   const [firstName, setFirstName] = useState("");
@@ -30,7 +27,7 @@ const OnboardingScreen = () => {
         onChangeText={setLastName}
         placeholder='Last name'
       />
-      <Button title='Menu' onPress={processUserData} />
+      <Button title='Menu' onPress={processUser} />
     </View>
   );
 };

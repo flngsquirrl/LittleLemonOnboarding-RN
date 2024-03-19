@@ -5,9 +5,6 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import UserContext from "../contexts/UserContext";
 import ProfileContext from "../contexts/ProfileContext";
 
-// test imports
-import { MOCK_CURRENT_USER } from "../contexts/UserContext";
-
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
   const [profile, setProfile] = useState({ ...user });
