@@ -23,13 +23,13 @@ const ProfileScreen = () => {
         <Text style={styles.title}>Profile</Text>
         <ProfileAvatar />
         <View style={styles.infoContainer}>
-          <Text>First name</Text>
+          <Text style={styles.inputTitle}>First name</Text>
           <TextInput
             style={styles.input}
             value={profile.firstName}
             onChangeText={(value) => setProfile({ ...profile, firstName: value })}
           />
-          <Text>Last name</Text>
+          <Text style={styles.inputTitle}>Last name</Text>
           <TextInput
             style={styles.input}
             value={profile.lastName}
@@ -54,11 +54,15 @@ const styles = StyleSheet.create({
   infoContainer: {
     padding: 20,
   },
+  inputTitle: {
+    fontSize: 15,
+    marginTop: 15,
+    marginBottom: 5,
+  },
   input: {
     borderWidth: 1,
     borderColor: "grey",
     height: 40,
-    marginVertical: 10,
     padding: 10,
   },
 });
