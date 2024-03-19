@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 import ProfileAvatar from "../components/ProfileAvatar";
 import UserContext from "../contexts/UserContext";
@@ -11,9 +11,10 @@ const ProfileScreen = () => {
 
   const saveChanges = () => {
     // TODO: save avatar to app documents directory
-    // TODO: update user avatar path and data in the storage and in memory
+
     const userAvatarPath = profile.avatarPath;
     setUser({ ...profile, avatarPath: userAvatarPath });
+    // TODO: update user data in the storage
   };
 
   return (
@@ -21,8 +22,20 @@ const ProfileScreen = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Profile</Text>
         <ProfileAvatar />
-        <Text>{profile.firstName}</Text>
-        <Text>{profile.hasAvatar ? "true" : "false"}</Text>
+        <View style={styles.infoContainer}>
+          <Text>First name</Text>
+          <TextInput
+            style={styles.input}
+            value={profile.firstName}
+            onChangeText={(value) => setProfile({ ...profile, firstName: value })}
+          />
+          <Text>Last name</Text>
+          <TextInput
+            style={styles.input}
+            value={profile.lastName}
+            onChangeText={(value) => setProfile({ ...profile, lastName: value })}
+          />
+        </View>
         <Button title='Reset changes' onPress={() => setProfile({ ...user })} />
         <Button title='Save changes' onPress={saveChanges} />
         <Button title='Log out' onPress={() => setUser(null)} />
@@ -34,10 +47,19 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
   },
   title: {
     fontSize: 30,
+  },
+  infoContainer: {
+    padding: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "grey",
+    height: 40,
+    marginVertical: 10,
+    padding: 10,
   },
 });
 
