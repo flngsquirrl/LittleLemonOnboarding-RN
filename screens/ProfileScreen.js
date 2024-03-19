@@ -2,8 +2,10 @@ import { useState, useContext, useEffect } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 import ProfileAvatar from "../components/ProfileAvatar";
+
 import UserContext from "../contexts/UserContext";
 import ProfileContext from "../contexts/ProfileContext";
+import { saveUser, deleteUser } from "../persistence/userStorage";
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
@@ -13,8 +15,15 @@ const ProfileScreen = () => {
     // TODO: save avatar to app documents directory
 
     const userAvatarPath = profile.avatarPath;
-    setUser({ ...profile, avatarPath: userAvatarPath });
-    // TODO: update user data in the storage
+
+    const updatedUser = { ...profile, avatarPath: userAvatarPath };
+    saveUser(updatedUser);
+    setUser(updatedUser);
+  };
+
+  const processLogout = () => {
+    deleteUser();
+    setUser(null);
   };
 
   return (
@@ -38,7 +47,7 @@ const ProfileScreen = () => {
         </View>
         <Button title='Reset changes' onPress={() => setProfile({ ...user })} />
         <Button title='Save changes' onPress={saveChanges} />
-        <Button title='Log out' onPress={() => setUser(null)} />
+        <Button title='Log out' onPress={processLogout} />
       </View>
     </ProfileContext.Provider>
   );

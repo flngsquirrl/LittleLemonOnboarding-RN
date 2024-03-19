@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import SplashScreen from "../screens/SplashScreen";
@@ -9,6 +8,7 @@ import MenuScreen from "../screens/MenuScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 
 import UserContext from "../contexts/UserContext";
+import { readUser } from "../persistence/userStorage";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,12 +16,23 @@ const RootNavigator = () => {
   const [isLoading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
+  const loadUserData = async () => {
+    try {
+      const savedUser = await readUser();
+
+      if (savedUser) {
+        setUser(savedUser);
+      }
+    } catch (error) {
+      console.error("Error loading user", error);
+    }
+  };
+
   useEffect(() => {
-    // TODO: read isOnboardingComplete
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 5000);
-    setLoading(false);
+    (async () => {
+      await loadUserData();
+      setLoading(false);
+    })();
   }, []);
 
   if (isLoading) {

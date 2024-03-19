@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+
 import UserContext from "../contexts/UserContext";
+import { saveUser } from "../persistence/userStorage";
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
@@ -8,8 +10,9 @@ const OnboardingScreen = () => {
   const [lastName, setLastName] = useState("");
 
   const processUserData = () => {
-    setUser({ firstName: firstName, lastName: lastName });
-    // TODO: save user to storage
+    const currUser = { firstName: firstName, lastName: lastName };
+    setUser(currUser);
+    saveUser(currUser);
   };
 
   return (
