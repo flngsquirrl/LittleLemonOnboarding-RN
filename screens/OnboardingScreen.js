@@ -27,7 +27,7 @@ const OnboardingScreen = () => {
         onChangeText={setLastName}
         placeholder='Last name'
       />
-      <Button title='Menu' onPress={processUser} />
+      <Button title='Menu' onPress={processUserData} />
     </View>
   );
 };
