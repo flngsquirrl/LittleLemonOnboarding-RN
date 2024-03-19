@@ -4,8 +4,8 @@ import { prepareDirectory } from "../utils/fileUtils";
 const MENU_PATH_REL = "menu/";
 const MENU_PATH = FileSystem.documentDirectory + MENU_PATH_REL;
 
-async function prepareMenuDirectory() {
-  prepareDirectory(MENU_PATH);
+export async function prepareMenuDirectory() {
+  await prepareDirectory(MENU_PATH);
 }
 
 export function getMenuItemImagePath(imageName) {
@@ -13,7 +13,6 @@ export function getMenuItemImagePath(imageName) {
 }
 
 export async function downloadMenuItemImage(url, imageFileName) {
-  await prepareMenuDirectory();
   try {
     const saveToPath = getMenuItemImagePath(imageFileName);
     await FileSystem.downloadAsync(url, saveToPath);

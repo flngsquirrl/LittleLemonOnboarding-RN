@@ -3,7 +3,11 @@ import { View, Image, Text, Button, StyleSheet, ActivityIndicator, FlatList } fr
 
 import UserContext from "../contexts/UserContext";
 import { addIds } from "../utils/menuUtils";
-import { getMenuItemImagePath, downloadMenuItemImage } from "../persistence/menuFileStorage";
+import {
+  prepareMenuDirectory,
+  getMenuItemImagePath,
+  downloadMenuItemImage,
+} from "../persistence/menuFileStorage";
 import { getMenuItems, getMenuItemImageUrl } from "../network/menuRequests";
 
 const MenuScreen = ({ navigation }) => {
@@ -15,10 +19,11 @@ const MenuScreen = ({ navigation }) => {
     let items = await getMenuItems();
     items = addIds(items);
 
-    await items.forEach(async (item) => {
+    await prepareMenuDirectory();
+    for (let item of items) {
       const imageUrl = getMenuItemImageUrl(item.image);
       await downloadMenuItemImage(imageUrl, item.image);
-    });
+    }
 
     items.forEach((item) => {
       item.imagePath = getMenuItemImagePath(item.image);
