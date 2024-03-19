@@ -25,14 +25,13 @@ const RootNavigator = () => {
       }
     } catch (error) {
       console.error("Error loading user", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    (async () => {
-      await loadUserData();
-      setLoading(false);
-    })();
+    loadUserData();
   }, []);
 
   if (isLoading) {
