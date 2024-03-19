@@ -6,17 +6,21 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import UserContext from "../contexts/UserContext";
 import ProfileContext from "../contexts/ProfileContext";
 import { saveUser, deleteUser } from "../persistence/userStorage";
+import { saveUserAvatar, deleteUserAvatar } from "../persistence/userFileStorage";
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
   const [profile, setProfile] = useState({ ...user });
 
-  const saveChanges = () => {
-    // TODO: save avatar to app documents directory
+  const saveChanges = async () => {
+    let updatedUser = { ...profile };
+    if (profile.hasAvatar) {
+      const userAvatarPath = await saveUserAvatar(profile.avatarPath);
+      updatedUser = { ...updatedUser, avatarPath: userAvatarPath };
+    } else {
+      deleteUserAvatar();
+    }
 
-    const userAvatarPath = profile.avatarPath;
-
-    const updatedUser = { ...profile, avatarPath: userAvatarPath };
     saveUser(updatedUser);
     setUser(updatedUser);
   };

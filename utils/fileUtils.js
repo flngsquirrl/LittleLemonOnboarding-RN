@@ -1,11 +1,14 @@
 import * as FileSystem from "expo-file-system";
 
-function getDocumentsDirectory() {
-  return FileSystem.documentDirectory;
-}
-
-const USER_AVATAR_PATH = "user/avatar";
-
-export function getUserAvatarPath() {
-  return getDocumentsDirectory() + USER_AVATAR_PATH;
+export async function prepareDirectory(directoryPath) {
+  const targetDirectory = await FileSystem.getInfoAsync(directoryPath);
+  if (!targetDirectory.isDirectory) {
+    try {
+      await FileSystem.makeDirectoryAsync(directoryPath, {
+        intermediates: true,
+      });
+    } catch (error) {
+      console.info("Error while making directory", error);
+    }
+  }
 }

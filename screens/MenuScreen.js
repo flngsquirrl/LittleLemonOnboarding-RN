@@ -1,33 +1,48 @@
 import { useContext, useState, useEffect } from "react";
-import { View, Text, Button, StyleSheet, ActivityIndicator, FlatList } from "react-native";
+import { View, Image, Text, Button, StyleSheet, ActivityIndicator, FlatList } from "react-native";
 
 import UserContext from "../contexts/UserContext";
 import { addIds } from "../utils/menuUtils";
-import { getMenuItems } from "../network/menuRequests";
+import { getMenuItemImagePath, downloadMenuItemImage } from "../persistence/menuFileStorage";
+import { getMenuItems, getMenuItemImageUrl } from "../network/menuRequests";
 
 const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+  const loadData = async () => {
+    let items = await getMenuItems();
+    items = addIds(items);
+
+    await items.forEach(async (item) => {
+      const imageUrl = getMenuItemImageUrl(item.image);
+      await downloadMenuItemImage(imageUrl, item.image);
+    });
+
+    items.forEach((item) => {
+      item.imagePath = getMenuItemImagePath(item.image);
+    });
+
+    setMenuItems(items);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    (async () => {
-      const items = await getMenuItems();
-      const itemWithIds = addIds(items);
-      console.log(itemWithIds);
-      setMenuItems(itemWithIds);
-      setLoading(false);
-    })();
+    loadData();
   }, []);
 
-  const MenuItem = ({ name, price }) => (
+  const MenuItem = ({ name, price, imagePath }) => (
     <View style={menuStyles.itemContainer}>
       <Text style={menuStyles.itemName}>{name}</Text>
       <Text style={menuStyles.itemPrice}>{"$" + price}</Text>
+      <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
     </View>
   );
 
-  const renderItem = ({ item }) => <MenuItem name={item.name} price={item.price} />;
+  const renderItem = ({ item }) => (
+    <MenuItem name={item.name} price={item.price} imagePath={item.imagePath} />
+  );
 
   return (
     <View style={styles.container}>
@@ -54,6 +69,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const menuStyles = StyleSheet.create({});
+const menuStyles = StyleSheet.create({
+  image: {
+    width: 100,
+    height: 100,
+  },
+});
 
 export default MenuScreen;
