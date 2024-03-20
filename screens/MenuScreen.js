@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { View, Image, Text, Button, StyleSheet, ActivityIndicator, FlatList } from "react-native";
+import CategoryFilter from "../components/CategoryFilter";
 
 import UserContext from "../contexts/UserContext";
 import { addIds } from "../utils/menuUtils";
@@ -15,6 +16,7 @@ const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
 
   const fetchDataFromNetwork = async () => {
     let items = await getMenuItems();
@@ -47,8 +49,19 @@ const MenuScreen = ({ navigation }) => {
     setLoading(false);
   };
 
+  const menuCategories = ["Starters", "Mains", "Desserts", "Drinks", "Specialties"];
+
+  const prepareCategories = () => {
+    const preparedCategories = menuCategories.map((category) => ({
+      name: category,
+      isSelected: false,
+    }));
+    setCategories(preparedCategories);
+  };
+
   useEffect(() => {
     loadData();
+    prepareCategories();
   }, []);
 
   const MenuItem = ({ name, price, imagePath }) => (
@@ -63,12 +76,19 @@ const MenuScreen = ({ navigation }) => {
     <MenuItem name={item.name} price={item.price} imagePath={item.imagePath} />
   );
 
+  const handleFilterChange = (index) => {
+    const copy = [...categories];
+    copy[index].isSelected = !categories[index].isSelected;
+    setCategories(copy);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
       <Text>{user.firstName}</Text>
       <Text>{user.hasAvatar ? "true" : "false"}</Text>
       <Button title='Profile' onPress={() => navigation.navigate("profile")} />
+      <CategoryFilter categories={categories} onChange={handleFilterChange} />
       {isLoading ? (
         <ActivityIndicator />
       ) : (
@@ -81,7 +101,6 @@ const MenuScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
   },
   title: {
     fontSize: 30,
