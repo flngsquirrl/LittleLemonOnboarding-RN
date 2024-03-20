@@ -3,6 +3,7 @@ import { View, Image, Text, Button, StyleSheet, ActivityIndicator, FlatList } fr
 
 import UserContext from "../contexts/UserContext";
 import { addIds } from "../utils/menuUtils";
+import * as DBService from "../persistence/dbService";
 import {
   prepareMenuDirectory,
   getMenuItemImagePath,
@@ -15,7 +16,7 @@ const MenuScreen = ({ navigation }) => {
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  const loadData = async () => {
+  const fetchDataFromNetwork = async () => {
     let items = await getMenuItems();
     items = addIds(items);
 
@@ -23,6 +24,18 @@ const MenuScreen = ({ navigation }) => {
     for (let item of items) {
       const imageUrl = getMenuItemImageUrl(item.image);
       await downloadMenuItemImage(imageUrl, item.image);
+    }
+
+    return items;
+  };
+
+  const loadData = async () => {
+    await DBService.createTable();
+    //await DBService.dropTable();
+    let items = await DBService.getMenuItems();
+    if (items.length == 0) {
+      items = await fetchDataFromNetwork();
+      DBService.saveMenuItems(items);
     }
 
     items.forEach((item) => {
