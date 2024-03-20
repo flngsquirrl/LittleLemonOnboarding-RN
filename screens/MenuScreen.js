@@ -21,12 +21,14 @@ import {
 } from "../persistence/menuFileStorage";
 import { getMenuItems, getMenuItemImageUrl } from "../network/menuRequests";
 
+const MENU_CATEGORIES = ["Starters", "Mains", "Desserts", "Drinks", "Specialties"];
+
 const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [selections, setSelections] = useState(MENU_CATEGORIES.map((item) => false));
 
   const fetchDataFromNetwork = async () => {
     let items = await getMenuItems();
@@ -51,33 +53,42 @@ const MenuScreen = ({ navigation }) => {
       DBService.saveMenuItems(items);
     }
 
-    items.forEach((item) => {
-      item.imagePath = getMenuItemImagePath(item.image);
-    });
+    preprocessMenuItems(items);
 
     setMenuItems(items);
     setLoading(false);
   };
 
-  const menuCategories = ["Starters", "Mains", "Desserts", "Drinks", "Specialties"];
-
-  const prepareCategories = () => {
-    const preparedCategories = menuCategories.map((category) => ({
-      name: category,
-      isSelected: false,
-    }));
-    setCategories(preparedCategories);
+  const preprocessMenuItems = (items) => {
+    items.forEach((item) => {
+      item.imagePath = getMenuItemImagePath(item.image);
+    });
   };
 
   useEffect(() => {
     loadData();
-    prepareCategories();
   }, []);
 
-  const MenuItem = ({ name, price, imagePath }) => (
+  useEffect(() => {
+    (async () => {
+      const hasNoSelection = selections.every((item) => item === false);
+      const activeCategories = MENU_CATEGORIES.filter((_category, index) => {
+        return hasNoSelection ? true : selections[index];
+      });
+      const filteredMenuItems = await DBService.filterByNameAndCategories(
+        searchText,
+        activeCategories
+      );
+      preprocessMenuItems(filteredMenuItems);
+      setMenuItems(filteredMenuItems);
+    })();
+  }, [selections, searchText]);
+
+  const MenuItem = ({ name, price, category, imagePath }) => (
     <View style={menuStyles.container}>
       <View style={menuStyles.info}>
         <Text style={menuStyles.name}>{name}</Text>
+        <Text style={menuStyles.category}>{category}</Text>
         <Text style={menuStyles.price}>{"$" + price}</Text>
       </View>
       <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
@@ -85,13 +96,18 @@ const MenuScreen = ({ navigation }) => {
   );
 
   const renderItem = ({ item }) => (
-    <MenuItem name={item.name} price={item.price} imagePath={item.imagePath} />
+    <MenuItem
+      name={item.name}
+      price={item.price}
+      category={item.category}
+      imagePath={item.imagePath}
+    />
   );
 
   const handleFilterChange = (index) => {
-    const copy = [...categories];
-    copy[index].isSelected = !categories[index].isSelected;
-    setCategories(copy);
+    const copy = [...selections];
+    copy[index] = !selections[index];
+    setSelections(copy);
   };
 
   return (
@@ -101,7 +117,11 @@ const MenuScreen = ({ navigation }) => {
       <Text>{user.hasAvatar ? "true" : "false"}</Text>
       <Button title='Profile' onPress={() => navigation.navigate("profile")} />
       <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
-      <CategoryFilter categories={categories} onChange={handleFilterChange} />
+      <CategoryFilter
+        categories={MENU_CATEGORIES}
+        selections={selections}
+        onChange={handleFilterChange}
+      />
       {isLoading ? (
         <ActivityIndicator />
       ) : (

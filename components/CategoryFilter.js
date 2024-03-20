@@ -1,17 +1,17 @@
 import { View, Pressable, Text, StyleSheet } from "react-native";
 
-const CategoryFilter = ({ categories, onChange }) => {
+const CategoryFilter = ({ categories, selections, onChange }) => {
   return (
     <View style={styles.container}>
       {categories.map((category, index) => (
         <Pressable
-          style={[styles.item, category.isSelected && styles.selected]}
+          style={[styles.item, selections[index] && styles.selected]}
           key={index}
           onPress={() => {
             onChange(index);
           }}
         >
-          <Text>{category.name}</Text>
+          <Text>{categories[index]}</Text>
         </Pressable>
       ))}
     </View>

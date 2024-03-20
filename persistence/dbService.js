@@ -68,3 +68,21 @@ export async function saveMenuItems(menuItems) {
     }
   });
 }
+
+export async function filterByNameAndCategories(name, categories) {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      const categoriesParam = categories.map((item) => `'${item.toLowerCase()}'`).join(",");
+      tx.executeSql(
+        `select * from ${MENU_ITEMS_TABLE} where name like '%${name}%' and category in (${categoriesParam})`,
+        [],
+        (_, { rows }) => {
+          resolve(rows._array);
+        },
+        (error) => {
+          console.error("Error filtering menu items from DB", error);
+        }
+      );
+    });
+  });
+}
