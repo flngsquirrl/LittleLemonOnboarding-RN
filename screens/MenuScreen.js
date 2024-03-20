@@ -75,9 +75,11 @@ const MenuScreen = ({ navigation }) => {
   }, []);
 
   const MenuItem = ({ name, price, imagePath }) => (
-    <View style={menuStyles.itemContainer}>
-      <Text style={menuStyles.itemName}>{name}</Text>
-      <Text style={menuStyles.itemPrice}>{"$" + price}</Text>
+    <View style={menuStyles.container}>
+      <View style={menuStyles.info}>
+        <Text style={menuStyles.name}>{name}</Text>
+        <Text style={menuStyles.price}>{"$" + price}</Text>
+      </View>
       <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
     </View>
   );
@@ -112,6 +114,7 @@ const MenuScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 15,
   },
   title: {
     fontSize: 30,
@@ -125,9 +128,18 @@ const styles = StyleSheet.create({
 });
 
 const menuStyles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  name: {
+    fontSize: 30,
+  },
+  price: { fontSize: 20 },
   image: {
     width: 100,
     height: 100,
+    resizeMode: "cover",
   },
 });
 
