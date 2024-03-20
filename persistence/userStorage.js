@@ -22,7 +22,7 @@ export async function saveUser(user) {
 
 export async function deleteUser() {
   try {
-    const value = await AsyncStorage.removeItem(USER_ITEM_NAME);
+    await AsyncStorage.removeItem(USER_ITEM_NAME);
   } catch (error) {
     console.error("Error removing user from storage", error);
   }
