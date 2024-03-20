@@ -21,10 +21,11 @@ const MenuScreen = ({ navigation }) => {
     items = addIds(items);
 
     await prepareMenuDirectory();
-    for (let item of items) {
+    const downloadPromises = items.map(async (item) => {
       const imageUrl = getMenuItemImageUrl(item.image);
-      await downloadMenuItemImage(imageUrl, item.image);
-    }
+      return await downloadMenuItemImage(imageUrl, item.image);
+    });
+    await Promise.allSettled(downloadPromises);
 
     return items;
   };
