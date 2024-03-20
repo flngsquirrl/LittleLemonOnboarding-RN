@@ -1,5 +1,14 @@
 import { useContext, useState, useEffect } from "react";
-import { View, Image, Text, Button, StyleSheet, ActivityIndicator, FlatList } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  ActivityIndicator,
+  FlatList,
+} from "react-native";
 import CategoryFilter from "../components/CategoryFilter";
 
 import UserContext from "../contexts/UserContext";
@@ -16,6 +25,7 @@ const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [searchText, setSearchText] = useState("");
   const [categories, setCategories] = useState([]);
 
   const fetchDataFromNetwork = async () => {
@@ -88,6 +98,7 @@ const MenuScreen = ({ navigation }) => {
       <Text>{user.firstName}</Text>
       <Text>{user.hasAvatar ? "true" : "false"}</Text>
       <Button title='Profile' onPress={() => navigation.navigate("profile")} />
+      <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
       <CategoryFilter categories={categories} onChange={handleFilterChange} />
       {isLoading ? (
         <ActivityIndicator />
@@ -104,6 +115,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "grey",
+    height: 40,
+    padding: 10,
   },
 });
 
