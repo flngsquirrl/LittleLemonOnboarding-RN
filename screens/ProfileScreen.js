@@ -4,7 +4,6 @@ import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import ProfileAvatar from "../components/ProfileAvatar";
 
 import UserContext from "../contexts/UserContext";
-import ProfileContext from "../contexts/ProfileContext";
 import { saveUser, deleteUser } from "../persistence/userStorage";
 import { saveUserAvatar, deleteUserAvatar } from "../persistence/userFileStorage";
 
@@ -25,35 +24,37 @@ const ProfileScreen = () => {
     setUser(updatedUser);
   };
 
+  const handleAvatarChange = (newAvatarPath) => {
+    setProfile({ ...profile, hasAvatar: !!newAvatarPath, avatarPath: newAvatarPath });
+  };
+
   const processLogout = () => {
     deleteUser();
     setUser(null);
   };
 
   return (
-    <ProfileContext.Provider value={{ profile, setProfile }}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Profile</Text>
-        <ProfileAvatar />
-        <View style={styles.infoContainer}>
-          <Text style={styles.inputTitle}>First name</Text>
-          <TextInput
-            style={styles.input}
-            value={profile.firstName}
-            onChangeText={(value) => setProfile({ ...profile, firstName: value })}
-          />
-          <Text style={styles.inputTitle}>Last name</Text>
-          <TextInput
-            style={styles.input}
-            value={profile.lastName}
-            onChangeText={(value) => setProfile({ ...profile, lastName: value })}
-          />
-        </View>
-        <Button title='Reset changes' onPress={() => setProfile({ ...user })} />
-        <Button title='Save changes' onPress={saveChanges} />
-        <Button title='Log out' onPress={processLogout} />
+    <View style={styles.container}>
+      <Text style={styles.title}>Profile</Text>
+      <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
+      <View style={styles.infoContainer}>
+        <Text style={styles.inputTitle}>First name</Text>
+        <TextInput
+          style={styles.input}
+          value={profile.firstName}
+          onChangeText={(value) => setProfile({ ...profile, firstName: value })}
+        />
+        <Text style={styles.inputTitle}>Last name</Text>
+        <TextInput
+          style={styles.input}
+          value={profile.lastName}
+          onChangeText={(value) => setProfile({ ...profile, lastName: value })}
+        />
       </View>
-    </ProfileContext.Provider>
+      <Button title='Reset changes' onPress={() => setProfile({ ...user })} />
+      <Button title='Save changes' onPress={saveChanges} />
+      <Button title='Log out' onPress={processLogout} />
+    </View>
   );
 };
 

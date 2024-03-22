@@ -1,14 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { View, Text, Button, Pressable, Image, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
-import * as UserUtils from "../utils/userUtils";
+import * as ProfileUtils from "../utils/profileUtils";
 
-import ProfileContext from "../contexts/ProfileContext";
-
-const ProfileAvatar = () => {
-  const { profile, setProfile } = useContext(ProfileContext);
-
+const ProfileAvatar = ({ profile, onChange }) => {
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -28,15 +24,15 @@ const ProfileAvatar = () => {
   };
 
   const updateProfileAvatar = (newAvatarPath) => {
-    setProfile({ ...profile, hasAvatar: !!newAvatarPath, avatarPath: newAvatarPath });
+    onChange(newAvatarPath);
   };
 
-  const initials = UserUtils.getInitials(profile.firstName, profile.lastName);
+  const initials = ProfileUtils.getInitials(profile.firstName, profile.lastName);
 
   return (
     <>
       <Pressable onPress={pickImage}>
-        <View style={[styles.container, !profile.avatarPath && styles.textContainer]}>
+        <View style={[styles.container, !profile.avatarPath && styles.initials]}>
           {profile.avatarPath ? (
             <Image style={styles.image} source={{ uri: profile.avatarPath }} alt='User avatar' />
           ) : (
@@ -53,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: "50%",
     borderColor: "black",
     borderWidth: 2,
     overflow: "hidden",
@@ -63,7 +59,7 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: "cover",
   },
-  textContainer: {
+  initials: {
     backgroundColor: "green",
     alignItems: "center",
     justifyContent: "center",
