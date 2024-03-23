@@ -1,5 +1,5 @@
 import { Text, Pressable, StyleSheet } from "react-native";
-import * as ColorGuide from "../styles/styleGuide";
+import * as StyleGuide from "../styles/styleGuide";
 
 const Button = ({ title, onPress }) => {
   return (
@@ -11,14 +11,14 @@ const Button = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: ColorGuide.buttonColors.background,
+    backgroundColor: StyleGuide.buttonColors.background,
     borderRadius: 7,
     height: 40,
     padding: 10,
   },
   text: {
     textAlign: "center",
-    color: ColorGuide.buttonColors.color,
+    color: StyleGuide.buttonColors.color,
     fontWeight: "bold",
     fontSize: 15,
   },
