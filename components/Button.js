@@ -1,0 +1,27 @@
+import { Text, Pressable, StyleSheet } from "react-native";
+import * as ColorGuide from "../styles/styleGuide";
+
+const Button = ({ title, onPress }) => {
+  return (
+    <Pressable style={styles.container} onPress={onPress}>
+      <Text style={styles.text}>{title}</Text>
+    </Pressable>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: ColorGuide.buttonColors.background,
+    borderRadius: 7,
+    height: 40,
+    padding: 10,
+  },
+  text: {
+    textAlign: "center",
+    color: ColorGuide.buttonColors.color,
+    fontWeight: "bold",
+    fontSize: 15,
+  },
+});
+
+export default Button;

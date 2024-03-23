@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import UserContext from "../contexts/UserContext";
 import { saveUser } from "../persistence/userStorage";
 import InfoField from "../components/InfoField";
+import Button from "../components/Button";
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
@@ -21,7 +22,9 @@ const OnboardingScreen = () => {
       <Text style={styles.title}>Onboarding</Text>
       <InfoField value={firstName} label='First name' onChangeText={setFirstName} />
       <InfoField value={email} label='Email' onChangeText={setEmail} />
-      <Button title='Menu' onPress={processUserData} />
+      <View style={styles.buttonContainer}>
+        <Button title='Menu' onPress={processUserData} />
+      </View>
     </View>
   );
 };
@@ -33,6 +36,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
+  },
+  buttonContainer: {
+    marginTop: 20,
   },
 });
 
