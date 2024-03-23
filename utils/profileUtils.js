@@ -1,7 +1,5 @@
 export function getInitials(firstName, lastName) {
-  if (firstName && lastName) {
-    return `${firstName[0]}${lastName[0]}`.toUpperCase();
-  }
-
-  return "";
+  const fistNamePart = firstName ? firstName[0] : "";
+  const lastNamePart = lastName ? lastName[0] : "";
+  return `${fistNamePart}${lastNamePart}`.toUpperCase();
 }
