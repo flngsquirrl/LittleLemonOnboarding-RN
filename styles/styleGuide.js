@@ -11,3 +11,12 @@ export const buttonColors = {
   background: Colors.orange,
   color: Colors.white,
 };
+
+export const inputColors = {
+  border: Colors.grey,
+  text: Colors.darkGrey,
+};
+
+export const labelColors = {
+  text: Colors.darkGrey,
+};

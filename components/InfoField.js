@@ -1,4 +1,5 @@
 import { Text, View, TextInput, StyleSheet } from "react-native";
+import * as StyleGuide from "../styles/styleGuide";
 
 const InfoField = ({ label, value, onChangeText }) => {
   return (
@@ -14,12 +15,13 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   label: {
-    fontSize: 15,
     marginBottom: 5,
+    color: StyleGuide.labelColors.text,
   },
   input: {
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: StyleGuide.inputColors.border,
+    color: StyleGuide.inputColors.text,
     borderRadius: 7,
     height: 40,
     padding: 10,
