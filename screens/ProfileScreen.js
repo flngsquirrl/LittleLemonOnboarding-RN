@@ -1,7 +1,8 @@
-import { useState, useContext, useEffect } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { useState, useContext } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
 
 import ProfileAvatar from "../components/ProfileAvatar";
+import InfoField from "../components/InfoField";
 
 import UserContext from "../contexts/UserContext";
 import { saveUser, deleteUser } from "../persistence/userStorage";
@@ -38,17 +39,25 @@ const ProfileScreen = () => {
       <Text style={styles.title}>Profile</Text>
       <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
       <View style={styles.infoContainer}>
-        <Text style={styles.inputTitle}>First name</Text>
-        <TextInput
-          style={styles.input}
+        <InfoField
           value={profile.firstName}
+          label='First name'
           onChangeText={(value) => setProfile({ ...profile, firstName: value })}
         />
-        <Text style={styles.inputTitle}>Last name</Text>
-        <TextInput
-          style={styles.input}
+        <InfoField
           value={profile.lastName}
+          label='Last name'
           onChangeText={(value) => setProfile({ ...profile, lastName: value })}
+        />
+        <InfoField
+          value={profile.email}
+          label='Email'
+          onChangeText={(value) => setProfile({ ...profile, email: value })}
+        />
+        <InfoField
+          value={profile.phoneNumber}
+          label='Phone number'
+          onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
         />
       </View>
       <Button title='Reset changes' onPress={() => setProfile({ ...user })} />
