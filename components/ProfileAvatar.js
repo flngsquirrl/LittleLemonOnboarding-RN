@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
-import { View, Text, Button, Pressable, Image, StyleSheet } from "react-native";
+import { Button, Pressable } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 import * as ProfileUtils from "../utils/profileUtils";
+import Avatar from "./Avatar";
 
 const ProfileAvatar = ({ profile, onChange }) => {
   const pickImage = async () => {
@@ -32,42 +32,11 @@ const ProfileAvatar = ({ profile, onChange }) => {
   return (
     <>
       <Pressable onPress={pickImage}>
-        <View style={[styles.container, !profile.avatarPath && styles.initials]}>
-          {profile.avatarPath ? (
-            <Image style={styles.image} source={{ uri: profile.avatarPath }} alt='User avatar' />
-          ) : (
-            <Text style={styles.text}>{initials}</Text>
-          )}
-        </View>
+        <Avatar imagePath={profile.avatarPath} substitutionText={initials} />
       </Pressable>
       <Button title='Clear avatar' onPress={clearAvatar} />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: 100,
-    height: 100,
-    borderRadius: "50%",
-    borderColor: "black",
-    borderWidth: 2,
-    overflow: "hidden",
-  },
-  image: {
-    width: 100,
-    height: 100,
-    resizeMode: "cover",
-  },
-  initials: {
-    backgroundColor: "green",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 30,
-    color: "white",
-  },
-});
 
 export default ProfileAvatar;
