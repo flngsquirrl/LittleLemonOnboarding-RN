@@ -1,4 +1,5 @@
 import { View, Pressable, Text, StyleSheet } from "react-native";
+import * as StyleGuide from "../styles/styleGuide";
 
 const CategoryFilter = ({ categories, selections, onChange }) => {
   return (
@@ -11,7 +12,9 @@ const CategoryFilter = ({ categories, selections, onChange }) => {
             onChange(index);
           }}
         >
-          <Text>{categories[index]}</Text>
+          <Text style={[styles.text, selections[index] && styles.selected]}>
+            {categories[index]}
+          </Text>
         </Pressable>
       ))}
     </View>
@@ -21,18 +24,21 @@ const CategoryFilter = ({ categories, selections, onChange }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 16,
   },
   item: {
     padding: 5,
-    borderWidth: 2,
-    borderColor: "grey",
+    marginRight: 7,
+    borderWidth: 1,
+    borderColor: StyleGuide.selectionBox.base.borderColor,
     borderRadius: 10,
   },
+  text: {
+    color: StyleGuide.selectionBox.base.color,
+  },
   selected: {
-    backgroundColor: "yellow",
-    opacity: 0.5,
+    backgroundColor: StyleGuide.selectionBox.selected.backgroundColor,
+    color: StyleGuide.selectionBox.selected.color,
+    borderColor: StyleGuide.selectionBox.base.borderColor,
   },
 });
 

@@ -27,3 +27,14 @@ export const infoBox = {
   color: Colors.white,
   borderColor: Colors.white,
 };
+
+export const selectionBox = {
+  base: {
+    color: Colors.darkGrey,
+    borderColor: Colors.darkGrey,
+  },
+  selected: {
+    backgroundColor: Colors.orange,
+    color: Colors.white,
+  },
+};
