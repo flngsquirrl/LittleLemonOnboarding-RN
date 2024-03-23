@@ -8,10 +8,10 @@ import InfoField from "../components/InfoField";
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
   const processUserData = () => {
-    const currUser = { firstName: firstName, lastName: lastName };
+    const currUser = { firstName: firstName, email: email };
     setUser(currUser);
     saveUser(currUser);
   };
@@ -20,7 +20,7 @@ const OnboardingScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Onboarding</Text>
       <InfoField value={firstName} label='First name' onChangeText={setFirstName} />
-      <InfoField value={lastName} label='Last name' onChangeText={setLastName} />
+      <InfoField value={email} label='Email' onChangeText={setEmail} />
       <Button title='Menu' onPress={processUserData} />
     </View>
   );
