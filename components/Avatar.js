@@ -1,4 +1,5 @@
 import { View, Image, Text, StyleSheet } from "react-native";
+import * as StyleGuide from "../styles/styleGuide";
 
 const Avatar = ({ imagePath, substitutionText }) => {
   return (
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: "50%",
-    borderColor: "black",
+    borderColor: StyleGuide.infoBox.borderColor,
     borderWidth: 2,
     overflow: "hidden",
   },
@@ -27,13 +28,13 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   textContainer: {
-    backgroundColor: "green",
+    backgroundColor: StyleGuide.infoBox.background,
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
     fontSize: 30,
-    color: "white",
+    color: StyleGuide.infoBox.color,
   },
 });
 
