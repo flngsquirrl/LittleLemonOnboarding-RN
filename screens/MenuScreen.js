@@ -4,15 +4,18 @@ import {
   Image,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   ActivityIndicator,
   FlatList,
+  Pressable,
 } from "react-native";
+
+import Avatar from "../components/Avatar";
 import CategoryFilter from "../components/CategoryFilter";
 
 import UserContext from "../contexts/UserContext";
 import { addIds } from "../utils/menuUtils";
+import { getInitials } from "../utils/profileUtils";
 import * as DBService from "../persistence/dbService";
 import {
   prepareMenuDirectory,
@@ -29,6 +32,8 @@ const MenuScreen = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [selections, setSelections] = useState(MENU_CATEGORIES.map((item) => false));
+
+  const initials = getInitials(user.firstName, user.lastName);
 
   const fetchDataFromNetwork = async () => {
     let items = await getMenuItems();
@@ -113,9 +118,9 @@ const MenuScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
-      <Text>{user.firstName}</Text>
-      <Text>{user.hasAvatar ? "true" : "false"}</Text>
-      <Button title='Profile' onPress={() => navigation.navigate("profile")} />
+      <Pressable onPress={() => navigation.navigate("profile")}>
+        <Avatar imagePath={user.avatarPath} substitutionText={initials} />
+      </Pressable>
       <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
       <CategoryFilter
         categories={MENU_CATEGORIES}
