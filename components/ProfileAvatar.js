@@ -1,4 +1,4 @@
-import { Button, Pressable } from "react-native";
+import { Button, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 import * as ProfileUtils from "../utils/profileUtils";
@@ -31,9 +31,9 @@ const ProfileAvatar = ({ profile, onChange }) => {
 
   return (
     <>
-      <Pressable onPress={pickImage}>
+      <TouchableOpacity activeOpacity={0.6} onPress={pickImage}>
         <Avatar imagePath={profile.avatarPath} substitutionText={initials} />
-      </Pressable>
+      </TouchableOpacity>
       <Button title='Clear avatar' onPress={clearAvatar} />
     </>
   );

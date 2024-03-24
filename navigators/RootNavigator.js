@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Pressable, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import appStyles from "../styles/styleGuide";
 
@@ -50,10 +50,10 @@ const RootNavigator = () => {
 
   const LogoutButton = () => {
     return (
-      <Pressable style={logoutStyles.container} onPress={processLogout}>
+      <TouchableOpacity activeOpacity={0.6} style={logoutStyles.container} onPress={processLogout}>
         <MaterialCommunityIcons name='logout' style={logoutStyles.icon} />
         <Text style={logoutStyles.text}>Log out</Text>
-      </Pressable>
+      </TouchableOpacity>
     );
   };
 

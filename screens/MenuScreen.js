@@ -7,7 +7,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   FlatList,
-  Pressable,
+  TouchableOpacity,
 } from "react-native";
 
 import appStyles from "../styles/styleGuide";
@@ -126,9 +126,9 @@ const MenuScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
-      <Pressable onPress={() => navigation.navigate("profile")}>
+      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate("profile")}>
         <Avatar imagePath={user.avatarPath} substitutionText={initials} />
-      </Pressable>
+      </TouchableOpacity>
       <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
       <CategoryFilter
         categories={MENU_CATEGORIES}
