@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 7,
     padding: 10,
+    borderWidth: 1,
   },
   text: {
     textAlign: "center",
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
   basic: {
     container: {
       backgroundColor: appStyles.button.basic.background,
+      borderColor: appStyles.button.basic.borderColor,
     },
     text: {
       color: appStyles.button.basic.color,
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
     container: {
       backgroundColor: appStyles.button.destructive.background,
       borderColor: appStyles.button.destructive.borderColor,
-      borderWidth: 1,
     },
     text: {
       fontWeight: "normal",

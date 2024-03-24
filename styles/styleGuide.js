@@ -13,6 +13,7 @@ export default appStyles = {
     basic: {
       background: AppColors.orange,
       color: AppColors.white,
+      borderColor: AppColors.orange,
     },
     destructive: {
       color: AppColors.darkGrey,
