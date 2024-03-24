@@ -32,37 +32,34 @@ const ProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Profile</Text>
       <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
-      <View style={styles.infoContainer}>
-        <InfoField
-          value={profile.firstName}
-          label='First name'
-          onChangeText={(value) => setProfile({ ...profile, firstName: value })}
+      <InfoField
+        value={profile.firstName}
+        label='First name'
+        onChangeText={(value) => setProfile({ ...profile, firstName: value })}
+      />
+      <InfoField
+        value={profile.lastName}
+        label='Last name'
+        onChangeText={(value) => setProfile({ ...profile, lastName: value })}
+      />
+      <InfoField
+        value={profile.email}
+        label='Email'
+        onChangeText={(value) => setProfile({ ...profile, email: value })}
+      />
+      <InfoField
+        value={profile.phoneNumber}
+        label='Phone number'
+        onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
+      />
+      <View style={styles.buttonsContainer}>
+        <ButtonWrapper title='Save changes' onPress={saveChanges} />
+        <ButtonWrapper
+          title='Reset changes'
+          isDestructive='true'
+          onPress={() => setProfile({ ...user })}
         />
-        <InfoField
-          value={profile.lastName}
-          label='Last name'
-          onChangeText={(value) => setProfile({ ...profile, lastName: value })}
-        />
-        <InfoField
-          value={profile.email}
-          label='Email'
-          onChangeText={(value) => setProfile({ ...profile, email: value })}
-        />
-        <InfoField
-          value={profile.phoneNumber}
-          label='Phone number'
-          onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
-        />
-        <View style={styles.buttonsContainer}>
-          <ButtonWrapper title='Save changes' onPress={saveChanges} />
-          <ButtonWrapper
-            title='Reset changes'
-            isDestructive='true'
-            onPress={() => setProfile({ ...user })}
-          />
-        </View>
       </View>
     </View>
   );
@@ -79,12 +76,10 @@ const ButtonWrapper = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
   },
   title: {
     fontSize: 30,
-  },
-  infoContainer: {
-    padding: 20,
   },
   inputTitle: {
     fontSize: 15,
