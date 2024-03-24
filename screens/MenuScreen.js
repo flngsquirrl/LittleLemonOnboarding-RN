@@ -74,20 +74,20 @@ const MenuScreen = ({ navigation }) => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      const hasNoSelection = selections.every((item) => item === false);
-      const activeCategories = MENU_CATEGORIES.filter((_category, index) => {
-        return hasNoSelection ? true : selections[index];
-      });
-      const filteredMenuItems = await DBService.filterByNameAndCategories(
-        searchText,
-        activeCategories
-      );
-      preprocessMenuItems(filteredMenuItems);
-      setMenuItems(filteredMenuItems);
-    })();
-  }, [selections, searchText]);
+  // useEffect(() => {
+  //   (async () => {
+  //     const hasNoSelection = selections.every((item) => item === false);
+  //     const activeCategories = MENU_CATEGORIES.filter((_category, index) => {
+  //       return hasNoSelection ? true : selections[index];
+  //     });
+  //     const filteredMenuItems = await DBService.filterByNameAndCategories(
+  //       searchText,
+  //       activeCategories
+  //     );
+  //     preprocessMenuItems(filteredMenuItems);
+  //     setMenuItems(filteredMenuItems);
+  //   })();
+  // }, [selections, searchText]);
 
   const MenuItem = ({ name, price, category, imagePath }) => (
     <View style={menuStyles.container}>
