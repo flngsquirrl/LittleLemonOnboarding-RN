@@ -8,6 +8,21 @@ const AppColors = {
   darkGrey: "#333333",
 };
 
+export const iconTextButtonStyles = {
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  icon: {
+    color: AppColors.darkGreen,
+    fontSize: 20,
+  },
+  text: {
+    color: AppColors.darkGreen,
+    fontWeight: "bold",
+  },
+};
+
 export default appStyles = {
   button: {
     basic: {
@@ -19,12 +34,6 @@ export default appStyles = {
       color: AppColors.darkGrey,
       borderColor: AppColors.darkGrey,
     },
-  },
-  toolbarButton: {
-    color: AppColors.darkGreen,
-  },
-  actionButton: {
-    color: AppColors.darkGreen,
   },
   separatorLine: {
     color: AppColors.grey,

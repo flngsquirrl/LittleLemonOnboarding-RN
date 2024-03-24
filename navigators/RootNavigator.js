@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import appStyles from "../styles/styleGuide";
+import { iconTextButtonStyles } from "../styles/styleGuide";
 
 import SplashScreen from "../screens/SplashScreen";
 import OnboardingScreen from "../screens/OnboardingScreen";
@@ -50,9 +50,13 @@ const RootNavigator = () => {
 
   const LogoutButton = () => {
     return (
-      <TouchableOpacity activeOpacity={0.6} style={logoutStyles.container} onPress={processLogout}>
-        <MaterialCommunityIcons name='logout' style={logoutStyles.icon} />
-        <Text style={logoutStyles.text}>Log out</Text>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        style={iconTextButtonStyles.container}
+        onPress={processLogout}
+      >
+        <MaterialCommunityIcons name='logout' style={iconTextButtonStyles.icon} />
+        <Text style={iconTextButtonStyles.text}>Log out</Text>
       </TouchableOpacity>
     );
   };
@@ -83,20 +87,5 @@ const RootNavigator = () => {
     </UserContext.Provider>
   );
 };
-
-const logoutStyles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  icon: {
-    fontSize: 24,
-    color: appStyles.toolbarButton.color,
-  },
-  text: {
-    fontWeight: "bold",
-    color: appStyles.toolbarButton.color,
-  },
-});
 
 export default RootNavigator;

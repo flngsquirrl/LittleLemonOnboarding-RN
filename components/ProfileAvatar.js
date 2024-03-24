@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import appStyles from "../styles/styleGuide";
+import { appStyles, iconTextButtonStyles } from "../styles/styleGuide";
 
 import * as ProfileUtils from "../utils/profileUtils";
 import Avatar from "./Avatar";
@@ -38,8 +38,8 @@ const ProfileAvatar = ({ profile, onChange }) => {
         <Avatar imagePath={profile.avatarPath} substitutionText={initials} size={120} />
       </TouchableOpacity>
       <TouchableOpacity style={clearButtonStyles.container} onPress={clearAvatar}>
-        <MaterialCommunityIcons name='delete-forever-outline' style={clearButtonStyles.icon} />
-        <Text style={clearButtonStyles.text}>Clear</Text>
+        <MaterialCommunityIcons name='delete-forever-outline' style={iconTextButtonStyles.icon} />
+        <Text style={iconTextButtonStyles.text}>Clear</Text>
       </TouchableOpacity>
     </View>
   );
@@ -53,17 +53,8 @@ const styles = StyleSheet.create({
 
 const clearButtonStyles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
+    ...iconTextButtonStyles.container,
     marginTop: 10,
-  },
-  icon: {
-    fontSize: 20,
-    color: appStyles.actionButton.color,
-  },
-  text: {
-    color: appStyles.actionButton.color,
-    fontWeight: "bold",
   },
 });
 
