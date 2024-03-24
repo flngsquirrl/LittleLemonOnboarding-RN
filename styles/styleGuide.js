@@ -23,6 +23,9 @@ export default appStyles = {
   toolbarButton: {
     color: AppColors.darkGreen,
   },
+  separatorLine: {
+    color: AppColors.grey,
+  },
   inputColors: {
     border: AppColors.grey,
     text: AppColors.darkGrey,

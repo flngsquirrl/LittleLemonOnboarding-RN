@@ -10,6 +10,8 @@ import {
   Pressable,
 } from "react-native";
 
+import appStyles from "../styles/styleGuide";
+
 import Avatar from "../components/Avatar";
 import CategoryFilter from "../components/CategoryFilter";
 
@@ -89,12 +91,14 @@ const MenuScreen = ({ navigation }) => {
   //   })();
   // }, [selections, searchText]);
 
-  const MenuItem = ({ name, price, category, imagePath }) => (
+  const MenuItem = ({ name, price, description, imagePath }) => (
     <View style={menuStyles.container}>
-      <View style={menuStyles.info}>
+      <View style={menuStyles.infoContainer}>
         <Text style={menuStyles.name}>{name}</Text>
-        <Text style={menuStyles.category}>{category}</Text>
-        <Text style={menuStyles.price}>{"$" + price}</Text>
+        <Text style={menuStyles.description} numberOfLines={2}>
+          {description}
+        </Text>
+        <Text style={menuStyles.price}>{"$" + price.toFixed(2)}</Text>
       </View>
       <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
     </View>
@@ -104,7 +108,7 @@ const MenuScreen = ({ navigation }) => {
     <MenuItem
       name={item.name}
       price={item.price}
-      category={item.category}
+      description={item.description}
       imagePath={item.imagePath}
     />
   );
@@ -113,6 +117,10 @@ const MenuScreen = ({ navigation }) => {
     const copy = [...selections];
     copy[index] = !selections[index];
     setSelections(copy);
+  };
+
+  const FlatListItemSeparator = () => {
+    return <View style={menuStyles.separator} />;
   };
 
   return (
@@ -130,7 +138,12 @@ const MenuScreen = ({ navigation }) => {
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <FlatList data={menuItems} keyExtractor={(item) => item.id} renderItem={renderItem} />
+        <FlatList
+          data={menuItems}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+          ItemSeparatorComponent={FlatListItemSeparator}
+        />
       )}
     </View>
   );
@@ -155,16 +168,34 @@ const styles = StyleSheet.create({
 const menuStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    paddingVertical: 10,
+  },
+  infoContainer: {
+    flex: 2,
   },
   name: {
-    fontSize: 30,
+    fontSize: 20,
+    fontWeight: "bold",
+    flex: 1,
   },
-  price: { fontSize: 20 },
+  description: {
+    marginTop: 10,
+    marginRight: 10,
+    flex: 1,
+  },
+  price: {
+    marginTop: 10,
+    fontSize: 20,
+    flex: 1,
+  },
   image: {
-    width: 100,
-    height: 100,
-    resizeMode: "cover",
+    flex: 1,
+    aspectRatio: 1,
+  },
+  separator: {
+    height: StyleSheet.hairlineWidth,
+    width: "100%",
+    backgroundColor: appStyles.separatorLine.color,
   },
 });
 
