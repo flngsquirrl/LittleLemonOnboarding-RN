@@ -42,7 +42,6 @@ async function clearUserAvatarDirectory() {
   if (targetInfo.exists) {
     try {
       const files = await FileSystem.readDirectoryAsync(targetInfo.uri);
-      console.log(files);
       const deletePromises = files.map(async (file) => {
         try {
           const fileUri = USER_AVATAR_PATH + file;
