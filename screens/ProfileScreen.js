@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import ProfileAvatar from "../components/ProfileAvatar";
 import InfoField from "../components/InfoField";
+import Button from "../components/Button";
 
 import UserContext from "../contexts/UserContext";
 import { saveUser, deleteUser } from "../persistence/userStorage";
@@ -59,10 +60,24 @@ const ProfileScreen = () => {
           label='Phone number'
           onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
         />
+        <View style={styles.buttonsContainer}>
+          <ButtonWrapper title='Save changes' onPress={saveChanges} />
+          <ButtonWrapper
+            title='Reset changes'
+            isDestructive='true'
+            onPress={() => setProfile({ ...user })}
+          />
+          <ButtonWrapper title='Log out' isDestructive='true' onPress={processLogout} />
+        </View>
       </View>
-      <Button title='Reset changes' onPress={() => setProfile({ ...user })} />
-      <Button title='Save changes' onPress={saveChanges} />
-      <Button title='Log out' onPress={processLogout} />
+    </View>
+  );
+};
+
+const ButtonWrapper = (props) => {
+  return (
+    <View style={styles.buttonWrapper}>
+      <Button {...props} />
     </View>
   );
 };
@@ -87,6 +102,12 @@ const styles = StyleSheet.create({
     borderColor: "grey",
     height: 40,
     padding: 10,
+  },
+  buttonWrapper: {
+    marginTop: 10,
+  },
+  buttonsContainer: {
+    marginTop: 10,
   },
 });
 

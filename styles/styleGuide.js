@@ -9,9 +9,15 @@ const AppColors = {
 };
 
 export default appStyles = {
-  buttonColors: {
-    background: AppColors.orange,
-    color: AppColors.white,
+  button: {
+    basic: {
+      background: AppColors.orange,
+      color: AppColors.white,
+    },
+    destructive: {
+      color: AppColors.darkGrey,
+      borderColor: AppColors.darkGrey,
+    },
   },
   inputColors: {
     border: AppColors.grey,
