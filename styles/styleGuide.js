@@ -32,7 +32,7 @@ export default appStyles = {
     borderColor: AppColors.white,
   },
   selectionBox: {
-    base: {
+    basic: {
       color: AppColors.darkGrey,
       borderColor: AppColors.darkGrey,
     },

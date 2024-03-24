@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginRight: 7,
     borderWidth: 1,
-    borderColor: appStyles.selectionBox.base.borderColor,
+    borderColor: appStyles.selectionBox.basic.borderColor,
     borderRadius: 10,
   },
   selectedItem: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     borderColor: appStyles.selectionBox.selected.borderColor,
   },
   text: {
-    color: appStyles.selectionBox.base.color,
+    color: appStyles.selectionBox.basic.color,
     fontWeight: "bold",
     fontSize: 13,
   },
