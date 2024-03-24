@@ -20,6 +20,9 @@ export default appStyles = {
       borderColor: AppColors.darkGrey,
     },
   },
+  toolbarButton: {
+    color: AppColors.darkGreen,
+  },
   inputColors: {
     border: AppColors.grey,
     text: AppColors.darkGrey,

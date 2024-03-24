@@ -6,7 +6,7 @@ import InfoField from "../components/InfoField";
 import Button from "../components/Button";
 
 import UserContext from "../contexts/UserContext";
-import { saveUser, deleteUser } from "../persistence/userStorage";
+import { saveUser } from "../persistence/userStorage";
 import { saveUserAvatar, deleteUserAvatar } from "../persistence/userFileStorage";
 
 const ProfileScreen = () => {
@@ -28,11 +28,6 @@ const ProfileScreen = () => {
 
   const handleAvatarChange = (newAvatarPath) => {
     setProfile({ ...profile, hasAvatar: !!newAvatarPath, avatarPath: newAvatarPath });
-  };
-
-  const processLogout = () => {
-    deleteUser();
-    setUser(null);
   };
 
   return (
@@ -67,7 +62,6 @@ const ProfileScreen = () => {
             isDestructive='true'
             onPress={() => setProfile({ ...user })}
           />
-          <ButtonWrapper title='Log out' isDestructive='true' onPress={processLogout} />
         </View>
       </View>
     </View>

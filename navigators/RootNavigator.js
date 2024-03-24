@@ -2,6 +2,10 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { Pressable, Text, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import appStyles from "../styles/styleGuide";
+
 import SplashScreen from "../screens/SplashScreen";
 import OnboardingScreen from "../screens/OnboardingScreen";
 import MenuScreen from "../screens/MenuScreen";
@@ -9,6 +13,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 
 import UserContext from "../contexts/UserContext";
 import { readUser } from "../persistence/userStorage";
+import { deleteUser } from "../persistence/userStorage";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +43,20 @@ const RootNavigator = () => {
     return <SplashScreen />;
   }
 
+  const processLogout = () => {
+    deleteUser();
+    setUser(null);
+  };
+
+  const LogoutButton = () => {
+    return (
+      <Pressable style={logoutStyles.container} onPress={processLogout}>
+        <MaterialCommunityIcons name='logout' style={logoutStyles.icon} />
+        <Text style={logoutStyles.text}>Log out</Text>
+      </Pressable>
+    );
+  };
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Stack.Navigator>
@@ -50,12 +69,34 @@ const RootNavigator = () => {
         ) : (
           <>
             <Stack.Screen name='menu' options={{ title: "Menu" }} component={MenuScreen} />
-            <Stack.Screen name='profile' options={{ title: "Profile" }} component={ProfileScreen} />
+            <Stack.Screen
+              name='profile'
+              options={{
+                title: "Profile",
+                headerRight: () => <LogoutButton />,
+              }}
+              component={ProfileScreen}
+            />
           </>
         )}
       </Stack.Navigator>
     </UserContext.Provider>
   );
 };
+
+const logoutStyles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  icon: {
+    fontSize: 24,
+    color: appStyles.toolbarButton.color,
+  },
+  text: {
+    fontWeight: "bold",
+    color: appStyles.toolbarButton.color,
+  },
+});
 
 export default RootNavigator;
