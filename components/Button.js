@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import appStyles from "../styles/styleGuide";
+import colorGuide from "../styles/styleGuide";
 
 const Button = ({ title, isDestructive = false, onPress }) => {
   return (
@@ -31,21 +31,21 @@ const styles = StyleSheet.create({
   },
   basic: {
     container: {
-      backgroundColor: appStyles.button.basic.background,
-      borderColor: appStyles.button.basic.borderColor,
+      backgroundColor: colorGuide.button.basic.background,
+      borderColor: colorGuide.button.basic.borderColor,
     },
     text: {
-      color: appStyles.button.basic.color,
+      color: colorGuide.button.basic.color,
     },
   },
   destructive: {
     container: {
-      backgroundColor: appStyles.button.destructive.background,
-      borderColor: appStyles.button.destructive.borderColor,
+      backgroundColor: colorGuide.button.destructive.background,
+      borderColor: colorGuide.button.destructive.borderColor,
     },
     text: {
       fontWeight: "normal",
-      color: appStyles.button.destructive.color,
+      color: colorGuide.button.destructive.color,
     },
   },
 });

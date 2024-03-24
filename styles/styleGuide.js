@@ -23,7 +23,7 @@ export const iconTextButtonStyles = {
   },
 };
 
-export default appStyles = {
+export default colorGuide = {
   button: {
     basic: {
       background: AppColors.orange,
@@ -38,11 +38,11 @@ export default appStyles = {
   separatorLine: {
     color: AppColors.grey,
   },
-  inputColors: {
+  input: {
     border: AppColors.grey,
     text: AppColors.darkGrey,
   },
-  labelColors: {
+  label: {
     text: AppColors.darkGrey,
   },
   infoBox: {

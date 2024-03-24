@@ -1,5 +1,5 @@
 import { View, Image, Text, StyleSheet } from "react-native";
-import appStyles from "../styles/styleGuide";
+import colorGuide from "../styles/styleGuide";
 
 const Avatar = ({ imagePath, substitutionText, size }) => {
   const calculatedStyles = StyleSheet.create({
@@ -26,7 +26,7 @@ const Avatar = ({ imagePath, substitutionText, size }) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: appStyles.infoBox.borderColor,
+    borderColor: colorGuide.infoBox.borderColor,
     borderWidth: 2,
     overflow: "hidden",
   },
@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   textContainer: {
-    backgroundColor: appStyles.infoBox.background,
+    backgroundColor: colorGuide.infoBox.background,
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
-    color: appStyles.infoBox.color,
+    color: colorGuide.infoBox.color,
   },
 });
 

@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import appStyles from "../styles/styleGuide";
+import colorGuide from "../styles/styleGuide";
 
 import Avatar from "../components/Avatar";
 import CategoryFilter from "../components/CategoryFilter";
@@ -195,7 +195,7 @@ const menuStyles = StyleSheet.create({
   separator: {
     height: StyleSheet.hairlineWidth,
     width: "100%",
-    backgroundColor: appStyles.separatorLine.color,
+    backgroundColor: colorGuide.separatorLine.color,
   },
 });
 

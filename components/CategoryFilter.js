@@ -1,5 +1,5 @@
 import { View, Pressable, Text, StyleSheet } from "react-native";
-import appStyles from "../styles/styleGuide";
+import colorGuide from "../styles/styleGuide";
 
 const CategoryFilter = ({ categories, selections, onChange }) => {
   return (
@@ -29,20 +29,20 @@ const styles = StyleSheet.create({
     padding: 5,
     marginRight: 7,
     borderWidth: 1,
-    borderColor: appStyles.selectionBox.basic.borderColor,
+    borderColor: colorGuide.selectionBox.basic.borderColor,
     borderRadius: 10,
   },
   selectedItem: {
-    backgroundColor: appStyles.selectionBox.selected.backgroundColor,
-    borderColor: appStyles.selectionBox.selected.borderColor,
+    backgroundColor: colorGuide.selectionBox.selected.backgroundColor,
+    borderColor: colorGuide.selectionBox.selected.borderColor,
   },
   text: {
-    color: appStyles.selectionBox.basic.color,
+    color: colorGuide.selectionBox.basic.color,
     fontWeight: "bold",
     fontSize: 13,
   },
   selectedText: {
-    color: appStyles.selectionBox.selected.color,
+    color: colorGuide.selectionBox.selected.color,
   },
 });
 

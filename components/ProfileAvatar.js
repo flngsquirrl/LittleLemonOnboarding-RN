@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { appStyles, iconTextButtonStyles } from "../styles/styleGuide";
+import { colorGuide, iconTextButtonStyles } from "../styles/styleGuide";
 
 import * as ProfileUtils from "../utils/profileUtils";
 import Avatar from "./Avatar";
