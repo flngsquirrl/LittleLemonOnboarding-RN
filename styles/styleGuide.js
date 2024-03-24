@@ -36,5 +36,6 @@ export const selectionBox = {
   selected: {
     backgroundColor: Colors.orange,
     color: Colors.white,
+    borderColor: Colors.orange,
   },
 };

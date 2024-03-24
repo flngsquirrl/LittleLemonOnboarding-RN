@@ -6,13 +6,13 @@ const CategoryFilter = ({ categories, selections, onChange }) => {
     <View style={styles.container}>
       {categories.map((category, index) => (
         <Pressable
-          style={[styles.item, selections[index] && styles.selected]}
+          style={[styles.item, selections[index] && styles.selectedItem]}
           key={index}
           onPress={() => {
             onChange(index);
           }}
         >
-          <Text style={[styles.text, selections[index] && styles.selected]}>
+          <Text style={[styles.text, selections[index] && styles.selectedText]}>
             {categories[index]}
           </Text>
         </Pressable>
@@ -32,13 +32,17 @@ const styles = StyleSheet.create({
     borderColor: StyleGuide.selectionBox.base.borderColor,
     borderRadius: 10,
   },
+  selectedItem: {
+    backgroundColor: StyleGuide.selectionBox.selected.backgroundColor,
+    borderColor: StyleGuide.selectionBox.selected.borderColor,
+  },
   text: {
     color: StyleGuide.selectionBox.base.color,
+    fontWeight: "bold",
+    fontSize: 13,
   },
-  selected: {
-    backgroundColor: StyleGuide.selectionBox.selected.backgroundColor,
+  selectedText: {
     color: StyleGuide.selectionBox.selected.color,
-    borderColor: StyleGuide.selectionBox.base.borderColor,
   },
 });
 
