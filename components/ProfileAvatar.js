@@ -1,4 +1,4 @@
-import { Button, Text, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -33,22 +33,29 @@ const ProfileAvatar = ({ profile, onChange }) => {
   const initials = ProfileUtils.getInitials(profile.firstName, profile.lastName);
 
   return (
-    <>
+    <View style={styles.container}>
       <TouchableOpacity activeOpacity={0.6} onPress={pickImage}>
-        <Avatar imagePath={profile.avatarPath} substitutionText={initials} />
+        <Avatar imagePath={profile.avatarPath} substitutionText={initials} size={120} />
       </TouchableOpacity>
       <TouchableOpacity style={clearButtonStyles.container} onPress={clearAvatar}>
         <MaterialCommunityIcons name='delete-forever-outline' style={clearButtonStyles.icon} />
         <Text style={clearButtonStyles.text}>Clear</Text>
       </TouchableOpacity>
-    </>
+    </View>
   );
 };
 
-const clearButtonStyles = {
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+  },
+});
+
+const clearButtonStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop: 10,
   },
   icon: {
     fontSize: 20,
@@ -58,6 +65,6 @@ const clearButtonStyles = {
     color: appStyles.actionButton.color,
     fontWeight: "bold",
   },
-};
+});
 
 export default ProfileAvatar;

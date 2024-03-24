@@ -127,7 +127,7 @@ const MenuScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
       <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate("profile")}>
-        <Avatar imagePath={user.avatarPath} substitutionText={initials} />
+        <Avatar imagePath={user.avatarPath} substitutionText={initials} size={100} />
       </TouchableOpacity>
       <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
       <CategoryFilter
