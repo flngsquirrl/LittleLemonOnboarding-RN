@@ -1,4 +1,4 @@
-const Colors = {
+const AppColors = {
   darkGreen: "#495E57",
   orange: "#EE9972",
   lime: "#F4CE14",
@@ -8,34 +8,32 @@ const Colors = {
   darkGrey: "#333333",
 };
 
-export const buttonColors = {
-  background: Colors.orange,
-  color: Colors.white,
-};
-
-export const inputColors = {
-  border: Colors.grey,
-  text: Colors.darkGrey,
-};
-
-export const labelColors = {
-  text: Colors.darkGrey,
-};
-
-export const infoBox = {
-  background: Colors.orange,
-  color: Colors.white,
-  borderColor: Colors.white,
-};
-
-export const selectionBox = {
-  base: {
-    color: Colors.darkGrey,
-    borderColor: Colors.darkGrey,
+export default appStyles = {
+  buttonColors: {
+    background: AppColors.orange,
+    color: AppColors.white,
   },
-  selected: {
-    backgroundColor: Colors.orange,
-    color: Colors.white,
-    borderColor: Colors.orange,
+  inputColors: {
+    border: AppColors.grey,
+    text: AppColors.darkGrey,
+  },
+  labelColors: {
+    text: AppColors.darkGrey,
+  },
+  infoBox: {
+    background: AppColors.orange,
+    color: AppColors.white,
+    borderColor: AppColors.white,
+  },
+  selectionBox: {
+    base: {
+      color: AppColors.darkGrey,
+      borderColor: AppColors.darkGrey,
+    },
+    selected: {
+      backgroundColor: AppColors.orange,
+      color: AppColors.white,
+      borderColor: AppColors.orange,
+    },
   },
 };
