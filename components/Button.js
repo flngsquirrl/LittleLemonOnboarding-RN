@@ -20,7 +20,6 @@ const Button = ({ title, isDestructive = false, onPress }) => {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 7,
-    height: 40,
     padding: 10,
   },
   text: {
