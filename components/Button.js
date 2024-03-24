@@ -1,9 +1,10 @@
-import { Text, Pressable, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import appStyles from "../styles/styleGuide";
 
 const Button = ({ title, isDestructive = false, onPress }) => {
   return (
-    <Pressable
+    <TouchableOpacity
+      activeOpacity={0.6}
       style={[
         styles.container,
         isDestructive ? styles.destructive.container : styles.basic.container,
@@ -13,7 +14,7 @@ const Button = ({ title, isDestructive = false, onPress }) => {
       <Text style={[styles.text, isDestructive ? styles.destructive.text : styles.basic.text]}>
         {title}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
