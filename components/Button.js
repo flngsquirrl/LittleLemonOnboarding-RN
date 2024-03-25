@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import colorGuide from '../styles/styleGuide';
+import { colorGuide } from '../styles/styleGuide';
 
 const Button = ({ title, isDestructive = false, onPress }) => {
   return (

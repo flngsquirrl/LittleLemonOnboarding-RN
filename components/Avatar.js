@@ -1,6 +1,6 @@
 import { View, Image, Text, StyleSheet } from 'react-native';
 
-import colorGuide from '../styles/styleGuide';
+import { colorGuide } from '../styles/styleGuide';
 
 const Avatar = ({ imagePath, substitutionText, size }) => {
   const calculatedStyles = StyleSheet.create({

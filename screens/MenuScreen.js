@@ -20,7 +20,7 @@ import {
   getMenuItemImagePath,
   downloadMenuItemImage,
 } from '../persistence/menuFileStorage';
-import colorGuide from '../styles/styleGuide';
+import { colorGuide } from '../styles/styleGuide';
 import { addIds } from '../utils/menuUtils';
 import { getInitials } from '../utils/profileUtils';
 

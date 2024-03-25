@@ -1,6 +1,6 @@
 import { View, Pressable, Text, StyleSheet } from 'react-native';
 
-import colorGuide from '../styles/styleGuide';
+import { colorGuide } from '../styles/styleGuide';
 
 const CategoryFilter = ({ categories, selections, onChange }) => {
   return (

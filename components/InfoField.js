@@ -1,6 +1,6 @@
 import { Text, View, TextInput, StyleSheet } from 'react-native';
 
-import colorGuide from '../styles/styleGuide';
+import { colorGuide } from '../styles/styleGuide';
 
 const InfoField = ({ label, value, onChangeText }) => {
   return (
