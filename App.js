@@ -1,12 +1,7 @@
-import { NavigationContainer } from "@react-navigation/native";
 import RootNavigator from "./navigators/RootNavigator";
 
 const App = () => {
-  return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
-  );
+  return <RootNavigator />;
 };
 
 export default App;
