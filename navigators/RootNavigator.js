@@ -30,10 +30,6 @@ const RootNavigator = () => {
     loadUserData();
   }, []);
 
-  if (isLoading) {
-    return null;
-  }
-
   const loadUserData = async () => {
     try {
       const savedUser = await readUser();
@@ -47,6 +43,10 @@ const RootNavigator = () => {
       setLoading(false);
     }
   };
+
+  if (isLoading) {
+    return null;
+  }
 
   const processLogout = () => {
     deleteUser();
