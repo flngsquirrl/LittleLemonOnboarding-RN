@@ -26,6 +26,10 @@ const RootNavigator = () => {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
   if (isLoading) {
     return null;
   }
@@ -43,10 +47,6 @@ const RootNavigator = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    loadUserData();
-  }, []);
 
   const processLogout = () => {
     deleteUser();

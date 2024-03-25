@@ -3,7 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Avatar from './Avatar';
-import { colorGuide, iconTextButtonStyles } from '../styles/styleGuide';
+import { iconTextButtonStyles } from '../styles/styleGuide';
 import * as ProfileUtils from '../utils/profileUtils';
 
 const ProfileAvatar = ({ profile, onChange }) => {

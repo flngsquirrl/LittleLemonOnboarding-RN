@@ -14,7 +14,7 @@ export async function readUser() {
 
 export async function saveUser(user) {
   try {
-    const value = await AsyncStorage.setItem(USER_ITEM_NAME, JSON.stringify(user));
+    await AsyncStorage.setItem(USER_ITEM_NAME, JSON.stringify(user));
   } catch (error) {
     console.error('Error saving user to storage', error);
   }

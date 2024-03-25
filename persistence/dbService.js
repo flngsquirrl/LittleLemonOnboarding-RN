@@ -55,7 +55,7 @@ export async function saveMenuItems(menuItems) {
         (item) =>
           `(${item.id}, "${item.name}", "${item.description}", ${item.price}, "${item.category}", "${item.image}")`,
       );
-      valuesString = itemValues.join(',');
+      const valuesString = itemValues.join(',');
       await tx.executeSqlAsync(
         'insert into ' +
           MENU_ITEMS_TABLE +

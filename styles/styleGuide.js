@@ -23,7 +23,7 @@ export const iconTextButtonStyles = {
   },
 };
 
-export default colorGuide = {
+export const colorGuide = {
   button: {
     basic: {
       background: AppColors.orange,

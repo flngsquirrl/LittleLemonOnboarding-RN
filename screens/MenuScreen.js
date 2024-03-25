@@ -53,7 +53,7 @@ const MenuScreen = ({ navigation }) => {
     await DBService.createTable();
     //await DBService.dropTable();
     let items = await DBService.getMenuItems();
-    if (items.length == 0) {
+    if (items.length === 0) {
       items = await fetchDataFromNetwork();
       DBService.saveMenuItems(items);
     }
