@@ -1,16 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { colorGuide, iconTextButtonStyles } from "../styles/styleGuide";
-
-import * as ProfileUtils from "../utils/profileUtils";
-import Avatar from "./Avatar";
+import Avatar from './Avatar';
+import { colorGuide, iconTextButtonStyles } from '../styles/styleGuide';
+import * as ProfileUtils from '../utils/profileUtils';
 
 const ProfileAvatar = ({ profile, onChange }) => {
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [1, 1],
@@ -23,7 +22,7 @@ const ProfileAvatar = ({ profile, onChange }) => {
   };
 
   const clearAvatar = () => {
-    updateProfileAvatar("");
+    updateProfileAvatar('');
   };
 
   const updateProfileAvatar = (newAvatarPath) => {
@@ -38,7 +37,7 @@ const ProfileAvatar = ({ profile, onChange }) => {
         <Avatar imagePath={profile.avatarPath} substitutionText={initials} size={120} />
       </TouchableOpacity>
       <TouchableOpacity style={clearButtonStyles.container} onPress={clearAvatar}>
-        <MaterialCommunityIcons name='delete-forever-outline' style={iconTextButtonStyles.icon} />
+        <MaterialCommunityIcons name="delete-forever-outline" style={iconTextButtonStyles.icon} />
         <Text style={iconTextButtonStyles.text}>Clear</Text>
       </TouchableOpacity>
     </View>
@@ -47,7 +46,7 @@ const ProfileAvatar = ({ profile, onChange }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
 

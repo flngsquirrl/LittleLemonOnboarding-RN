@@ -1,5 +1,6 @@
-import { View, Pressable, Text, StyleSheet } from "react-native";
-import colorGuide from "../styles/styleGuide";
+import { View, Pressable, Text, StyleSheet } from 'react-native';
+
+import colorGuide from '../styles/styleGuide';
 
 const CategoryFilter = ({ categories, selections, onChange }) => {
   return (
@@ -10,8 +11,7 @@ const CategoryFilter = ({ categories, selections, onChange }) => {
           key={index}
           onPress={() => {
             onChange(index);
-          }}
-        >
+          }}>
           <Text style={[styles.text, selections[index] && styles.selectedText]}>
             {categories[index]}
           </Text>
@@ -23,7 +23,7 @@ const CategoryFilter = ({ categories, selections, onChange }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   item: {
     padding: 5,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colorGuide.selectionBox.basic.color,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 13,
   },
   selectedText: {

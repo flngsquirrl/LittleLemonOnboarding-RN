@@ -1,4 +1,4 @@
-import RootNavigator from "./navigators/RootNavigator";
+import RootNavigator from './navigators/RootNavigator';
 
 const App = () => {
   return <RootNavigator />;

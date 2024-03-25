@@ -1,17 +1,17 @@
 const AppColors = {
-  darkGreen: "#495E57",
-  orange: "#EE9972",
-  lime: "#F4CE14",
-  peach: "#FBDABB",
-  white: "white",
-  grey: "grey",
-  darkGrey: "#333333",
+  darkGreen: '#495E57',
+  orange: '#EE9972',
+  lime: '#F4CE14',
+  peach: '#FBDABB',
+  white: 'white',
+  grey: 'grey',
+  darkGrey: '#333333',
 };
 
 export const iconTextButtonStyles = {
   container: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   icon: {
     color: AppColors.darkGreen,
@@ -19,7 +19,7 @@ export const iconTextButtonStyles = {
   },
   text: {
     color: AppColors.darkGreen,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 };
 

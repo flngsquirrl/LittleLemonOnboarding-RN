@@ -1,21 +1,17 @@
-import * as React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as SplashScreen from 'expo-splash-screen';
+import { useState, useEffect, useCallback } from 'react';
+import * as React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import { TouchableOpacity, Text } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { iconTextButtonStyles } from "../styles/styleGuide";
-import * as SplashScreen from "expo-splash-screen";
-
-import OnboardingScreen from "../screens/OnboardingScreen";
-import MenuScreen from "../screens/MenuScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-
-import UserContext from "../contexts/UserContext";
-import { readUser } from "../persistence/userStorage";
-import { deleteUser } from "../persistence/userStorage";
+import UserContext from '../contexts/UserContext';
+import { readUser, deleteUser } from '../persistence/userStorage';
+import MenuScreen from '../screens/MenuScreen';
+import OnboardingScreen from '../screens/OnboardingScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import { iconTextButtonStyles } from '../styles/styleGuide';
 
 const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -42,7 +38,7 @@ const RootNavigator = () => {
         setUser(savedUser);
       }
     } catch (error) {
-      console.error("Error loading user", error);
+      console.error('Error loading user', error);
     } finally {
       setLoading(false);
     }
@@ -62,9 +58,8 @@ const RootNavigator = () => {
       <TouchableOpacity
         activeOpacity={0.6}
         style={iconTextButtonStyles.container}
-        onPress={processLogout}
-      >
-        <MaterialCommunityIcons name='logout' style={iconTextButtonStyles.icon} />
+        onPress={processLogout}>
+        <MaterialCommunityIcons name="logout" style={iconTextButtonStyles.icon} />
         <Text style={iconTextButtonStyles.text}>Log out</Text>
       </TouchableOpacity>
     );
@@ -76,17 +71,17 @@ const RootNavigator = () => {
         <Stack.Navigator>
           {!user ? (
             <Stack.Screen
-              name='onboarding'
-              options={{ title: "Onboarding" }}
+              name="onboarding"
+              options={{ title: 'Onboarding' }}
               component={OnboardingScreen}
             />
           ) : (
             <>
-              <Stack.Screen name='menu' options={{ title: "Menu" }} component={MenuScreen} />
+              <Stack.Screen name="menu" options={{ title: 'Menu' }} component={MenuScreen} />
               <Stack.Screen
-                name='profile'
+                name="profile"
                 options={{
-                  title: "Profile",
+                  title: 'Profile',
                   headerRight: () => <LogoutButton />,
                 }}
                 component={ProfileScreen}

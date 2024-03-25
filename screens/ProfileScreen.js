@@ -1,13 +1,12 @@
-import { useState, useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { useState, useContext } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-import ProfileAvatar from "../components/ProfileAvatar";
-import InfoField from "../components/InfoField";
-import Button from "../components/Button";
-
-import UserContext from "../contexts/UserContext";
-import { saveUser } from "../persistence/userStorage";
-import { saveUserAvatar, deleteUserAvatar } from "../persistence/userFileStorage";
+import Button from '../components/Button';
+import InfoField from '../components/InfoField';
+import ProfileAvatar from '../components/ProfileAvatar';
+import UserContext from '../contexts/UserContext';
+import { saveUserAvatar, deleteUserAvatar } from '../persistence/userFileStorage';
+import { saveUser } from '../persistence/userStorage';
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
@@ -35,29 +34,29 @@ const ProfileScreen = () => {
       <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
       <InfoField
         value={profile.firstName}
-        label='First name'
+        label="First name"
         onChangeText={(value) => setProfile({ ...profile, firstName: value })}
       />
       <InfoField
         value={profile.lastName}
-        label='Last name'
+        label="Last name"
         onChangeText={(value) => setProfile({ ...profile, lastName: value })}
       />
       <InfoField
         value={profile.email}
-        label='Email'
+        label="Email"
         onChangeText={(value) => setProfile({ ...profile, email: value })}
       />
       <InfoField
         value={profile.phoneNumber}
-        label='Phone number'
+        label="Phone number"
         onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
       />
       <View style={styles.buttonsContainer}>
-        <ButtonWrapper title='Save changes' onPress={saveChanges} />
+        <ButtonWrapper title="Save changes" onPress={saveChanges} />
         <ButtonWrapper
-          title='Reset changes'
-          isDestructive='true'
+          title="Reset changes"
+          isDestructive="true"
           onPress={() => setProfile({ ...user })}
         />
       </View>
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: 'grey',
     height: 40,
     padding: 10,
   },

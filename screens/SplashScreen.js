@@ -1,9 +1,9 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image } from 'react-native';
 
 const SplashScreen = () => {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../assets/images/little-lemon-logo.png")} />
+      <Image style={styles.image} source={require('../assets/images/little-lemon-logo.png')} />
     </View>
   );
 };
@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
     padding: 60,
   },
   image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "contain",
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
 });
 

@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from 'react';
 import {
   View,
   Image,
@@ -8,31 +8,29 @@ import {
   ActivityIndicator,
   FlatList,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
-import colorGuide from "../styles/styleGuide";
-
-import Avatar from "../components/Avatar";
-import CategoryFilter from "../components/CategoryFilter";
-
-import UserContext from "../contexts/UserContext";
-import { addIds } from "../utils/menuUtils";
-import { getInitials } from "../utils/profileUtils";
-import * as DBService from "../persistence/dbService";
+import Avatar from '../components/Avatar';
+import CategoryFilter from '../components/CategoryFilter';
+import UserContext from '../contexts/UserContext';
+import { getMenuItems, getMenuItemImageUrl } from '../network/menuRequests';
+import * as DBService from '../persistence/dbService';
 import {
   prepareMenuDirectory,
   getMenuItemImagePath,
   downloadMenuItemImage,
-} from "../persistence/menuFileStorage";
-import { getMenuItems, getMenuItemImageUrl } from "../network/menuRequests";
+} from '../persistence/menuFileStorage';
+import colorGuide from '../styles/styleGuide';
+import { addIds } from '../utils/menuUtils';
+import { getInitials } from '../utils/profileUtils';
 
-const MENU_CATEGORIES = ["Starters", "Mains", "Desserts", "Drinks", "Specialties"];
+const MENU_CATEGORIES = ['Starters', 'Mains', 'Desserts', 'Drinks', 'Specialties'];
 
 const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const [selections, setSelections] = useState(MENU_CATEGORIES.map((item) => false));
 
   const initials = getInitials(user.firstName, user.lastName);
@@ -98,7 +96,7 @@ const MenuScreen = ({ navigation }) => {
         <Text style={menuStyles.description} numberOfLines={2}>
           {description}
         </Text>
-        <Text style={menuStyles.price}>{"$" + price.toFixed(2)}</Text>
+        <Text style={menuStyles.price}>{'$' + price.toFixed(2)}</Text>
       </View>
       <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
     </View>
@@ -126,7 +124,7 @@ const MenuScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
-      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate("profile")}>
+      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate('profile')}>
         <Avatar imagePath={user.avatarPath} substitutionText={initials} size={100} />
       </TouchableOpacity>
       <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
@@ -159,7 +157,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: 'grey',
     height: 40,
     padding: 10,
   },
@@ -167,7 +165,7 @@ const styles = StyleSheet.create({
 
 const menuStyles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingVertical: 10,
   },
   infoContainer: {
@@ -175,7 +173,7 @@ const menuStyles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     flex: 1,
   },
   description: {
@@ -194,7 +192,7 @@ const menuStyles = StyleSheet.create({
   },
   separator: {
     height: StyleSheet.hairlineWidth,
-    width: "100%",
+    width: '100%',
     backgroundColor: colorGuide.separatorLine.color,
   },
 });

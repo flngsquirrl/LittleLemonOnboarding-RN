@@ -1,4 +1,4 @@
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from 'expo-file-system';
 
 export async function prepareDirectory(directoryPath) {
   const targetDirectory = await FileSystem.getInfoAsync(directoryPath);
@@ -8,11 +8,11 @@ export async function prepareDirectory(directoryPath) {
         intermediates: true,
       });
     } catch (error) {
-      console.error("Error while making directory", error);
+      console.error('Error while making directory', error);
     }
   }
 }
 
 export function getFileName(fileUri) {
-  return fileUri.slice(fileUri.lastIndexOf("/") + 1);
+  return fileUri.slice(fileUri.lastIndexOf('/') + 1);
 }

@@ -1,8 +1,8 @@
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from 'expo-file-system';
 
-import * as FileUtils from "../utils/fileUtils";
+import * as FileUtils from '../utils/fileUtils';
 
-const USER_AVATAR_PATH_REL = "user/avatar/";
+const USER_AVATAR_PATH_REL = 'user/avatar/';
 const USER_AVATAR_PATH = FileSystem.documentDirectory + USER_AVATAR_PATH_REL;
 
 async function prepareUserAvatarDirectory() {
@@ -26,7 +26,7 @@ export async function saveUserAvatar(fromUri) {
         to: targetUri,
       });
     } catch (error) {
-      console.info("Error while saving user avatar", error);
+      console.info('Error while saving user avatar', error);
     }
   }
 
@@ -47,12 +47,12 @@ async function clearUserAvatarDirectory() {
           const fileUri = USER_AVATAR_PATH + file;
           return await FileSystem.deleteAsync(fileUri);
         } catch (error) {
-          console.error("Error deleting file", error);
+          console.error('Error deleting file', error);
         }
       });
       await Promise.allSettled(deletePromises);
     } catch (error) {
-      console.info("Error while deleting user avatar", error);
+      console.info('Error while deleting user avatar', error);
     }
   }
 }

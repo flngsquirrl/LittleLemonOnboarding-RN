@@ -1,5 +1,6 @@
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import colorGuide from "../styles/styleGuide";
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+import colorGuide from '../styles/styleGuide';
 
 const Button = ({ title, isDestructive = false, onPress }) => {
   return (
@@ -9,8 +10,7 @@ const Button = ({ title, isDestructive = false, onPress }) => {
         styles.container,
         isDestructive ? styles.destructive.container : styles.basic.container,
       ]}
-      onPress={onPress}
-    >
+      onPress={onPress}>
       <Text style={[styles.text, isDestructive ? styles.destructive.text : styles.basic.text]}>
         {title}
       </Text>
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   text: {
-    textAlign: "center",
-    fontWeight: "bold",
+    textAlign: 'center',
+    fontWeight: 'bold',
     fontSize: 15,
   },
   basic: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
       borderColor: colorGuide.button.destructive.borderColor,
     },
     text: {
-      fontWeight: "normal",
+      fontWeight: 'normal',
       color: colorGuide.button.destructive.color,
     },
   },

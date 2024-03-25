@@ -1,7 +1,8 @@
-import * as FileSystem from "expo-file-system";
-import { prepareDirectory } from "../utils/fileUtils";
+import * as FileSystem from 'expo-file-system';
 
-const MENU_PATH_REL = "menu/";
+import { prepareDirectory } from '../utils/fileUtils';
+
+const MENU_PATH_REL = 'menu/';
 const MENU_PATH = FileSystem.documentDirectory + MENU_PATH_REL;
 
 export async function prepareMenuDirectory() {
@@ -18,6 +19,6 @@ export async function downloadMenuItemImage(url, imageFileName) {
     await FileSystem.downloadAsync(url, saveToPath);
     return saveToPath;
   } catch (error) {
-    console.error("Error downloading image", error);
+    console.error('Error downloading image', error);
   }
 }
