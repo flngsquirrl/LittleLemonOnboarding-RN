@@ -24,6 +24,10 @@ export const iconTextButtonStyles = {
 };
 
 export const colorGuide = {
+  headerTitle: {
+    background: AppColors.lime,
+    color: AppColors.darkGrey,
+  },
   button: {
     basic: {
       background: AppColors.orange,

@@ -11,7 +11,7 @@ import { readUser, deleteUser } from '../persistence/userStorage';
 import MenuScreen from '../screens/MenuScreen';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import { iconTextButtonStyles } from '../styles/styleGuide';
+import { colorGuide, iconTextButtonStyles } from '../styles/styleGuide';
 
 const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -68,7 +68,11 @@ const RootNavigator = () => {
   return (
     <NavigationContainer onReady={onReady}>
       <UserContext.Provider value={{ user, setUser }}>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerTintColor: colorGuide.headerTitle.color,
+            headerStyle: { backgroundColor: colorGuide.headerTitle.background },
+          }}>
           {!user ? (
             <Stack.Screen
               name="onboarding"
