@@ -23,6 +23,12 @@ export const iconTextButtonStyles = {
   },
 };
 
+export const displayTitleStyles = {
+  fontSize: 20,
+  color: AppColors.darkGrey,
+  marginBottom: 10,
+};
+
 export const colorGuide = {
   headerTitle: {
     background: AppColors.lime,

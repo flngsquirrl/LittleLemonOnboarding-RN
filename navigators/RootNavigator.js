@@ -76,7 +76,7 @@ const RootNavigator = () => {
           {!user ? (
             <Stack.Screen
               name="onboarding"
-              options={{ title: 'Onboarding' }}
+              options={{ title: 'Little Lemon' }}
               component={OnboardingScreen}
             />
           ) : (
