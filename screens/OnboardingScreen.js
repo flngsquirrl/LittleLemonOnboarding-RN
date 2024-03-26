@@ -2,10 +2,11 @@ import { useContext, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import Button from '../components/Button';
+import HeroBlock from '../components/HeroBlock';
 import InfoField from '../components/InfoField';
 import UserContext from '../contexts/UserContext';
 import { saveUser } from '../persistence/userStorage';
-import { AppColors, displayTitleStyles } from '../styles/styleGuide';
+import { displayTitleStyles } from '../styles/styleGuide';
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
@@ -20,6 +21,7 @@ const OnboardingScreen = () => {
 
   return (
     <View style={styles.container}>
+      <HeroBlock />
       <View style={styles.inputContainer}>
         <Text style={displayTitleStyles}>Let us get to know you</Text>
         <InfoField value={firstName} label="First name" onChangeText={setFirstName} />

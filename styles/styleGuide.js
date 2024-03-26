@@ -1,4 +1,4 @@
-const AppColors = {
+export const AppColors = {
   darkGreen: '#495E57',
   orange: '#EE9972',
   lime: '#F4CE14',
