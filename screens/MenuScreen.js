@@ -12,6 +12,7 @@ import {
 
 import Avatar from '../components/Avatar';
 import CategoryFilter from '../components/CategoryFilter';
+import HeroBlock from '../components/HeroBlock';
 import UserContext from '../contexts/UserContext';
 import { getMenuItems, getMenuItemImageUrl } from '../network/menuRequests';
 import * as DBService from '../persistence/dbService';
@@ -122,28 +123,31 @@ const MenuScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Menu</Text>
-      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate('profile')}>
-        <Avatar imagePath={user.avatarPath} substitutionText={initials} size={100} />
-      </TouchableOpacity>
-      <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
-      <CategoryFilter
-        categories={MENU_CATEGORIES}
-        selections={selections}
-        onChange={handleFilterChange}
-      />
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-        <FlatList
-          data={menuItems}
-          keyExtractor={(item) => item.id}
-          renderItem={renderItem}
-          ItemSeparatorComponent={FlatListItemSeparator}
+    <>
+      <HeroBlock />
+      <View style={styles.container}>
+        <Text style={styles.title}>Menu</Text>
+        <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate('profile')}>
+          <Avatar imagePath={user.avatarPath} substitutionText={initials} size={100} />
+        </TouchableOpacity>
+        <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
+        <CategoryFilter
+          categories={MENU_CATEGORIES}
+          selections={selections}
+          onChange={handleFilterChange}
         />
-      )}
-    </View>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <FlatList
+            data={menuItems}
+            keyExtractor={(item) => item.id}
+            renderItem={renderItem}
+            ItemSeparatorComponent={FlatListItemSeparator}
+          />
+        )}
+      </View>
+    </>
   );
 };
 
