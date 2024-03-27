@@ -126,7 +126,7 @@ const MenuScreen = ({ navigation }) => {
     <>
       <HeroBlock />
       <TouchableOpacity
-        style={{ position: 'absolute', top: 15, right: 15 }}
+        style={styles.avatar}
         activeOpacity={0.6}
         onPress={() => navigation.navigate('profile')}>
         <Avatar imagePath={user.avatarPath} substitutionText={initials} size={50} />
@@ -166,6 +166,11 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     height: 40,
     padding: 10,
+  },
+  avatar: {
+    position: 'absolute',
+    top: 15,
+    right: 15,
   },
 });
 
