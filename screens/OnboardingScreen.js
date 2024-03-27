@@ -7,6 +7,7 @@ import InfoField from '../components/InfoField';
 import UserContext from '../contexts/UserContext';
 import { saveUser } from '../persistence/userStorage';
 import { displayTitle, screenContainer } from '../styles/styleGuide';
+import * as UserUtils from '../utils/profileUtils';
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
@@ -19,15 +20,25 @@ const OnboardingScreen = () => {
     saveUser(currUser);
   };
 
+  const isFirstNameValid = UserUtils.isFirstNameValid(firstName);
+  const isEmailValid = UserUtils.isEmailValid(email);
+  const isDataValid = isFirstNameValid && isEmailValid;
+  console.log(isDataValid);
+
   return (
     <>
       <HeroBlock />
       <View style={screenContainer}>
         <Text style={displayTitle}>Let us get to know you</Text>
-        <InfoField value={firstName} label="First name" onChangeText={setFirstName} />
-        <InfoField value={email} label="Email" onChangeText={setEmail} />
+        <InfoField
+          value={firstName}
+          label="First name*"
+          valid={isFirstNameValid}
+          onChangeText={setFirstName}
+        />
+        <InfoField value={email} label="Email*" valid={isEmailValid} onChangeText={setEmail} />
         <View style={styles.buttonContainer}>
-          <Button title="Menu" onPress={processUserData} />
+          <Button title="Menu" enabled={isDataValid} onPress={processUserData} />
         </View>
       </View>
     </>

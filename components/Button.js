@@ -2,15 +2,17 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { colorGuide } from '../styles/styleGuide';
 
-const Button = ({ title, isDestructive = false, onPress }) => {
+const Button = ({ title, isDestructive = false, enabled = true, onPress }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.6}
+      enabled={enabled}
       style={[
         styles.container,
         isDestructive ? styles.destructive.container : styles.basic.container,
+        !enabled && styles.disabled,
       ]}
-      onPress={onPress}>
+      onPress={enabled ? onPress : null}>
       <Text style={[styles.text, isDestructive ? styles.destructive.text : styles.basic.text]}>
         {title}
       </Text>
@@ -47,6 +49,9 @@ const styles = StyleSheet.create({
       fontWeight: 'normal',
       color: colorGuide.button.destructive.color,
     },
+  },
+  disabled: {
+    opacity: 0.6,
   },
 });
 
