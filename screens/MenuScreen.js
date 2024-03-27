@@ -1,4 +1,5 @@
-import { useContext, useState, useEffect } from 'react';
+import debounce from 'lodash.debounce';
+import { useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import {
   View,
   Image,
@@ -32,6 +33,7 @@ const MenuScreen = ({ navigation }) => {
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
+  const [query, setQuery] = useState('');
   const [selections, setSelections] = useState(MENU_CATEGORIES.map((item) => false));
 
   const initials = getInitials(user.firstName, user.lastName);
@@ -82,22 +84,19 @@ const MenuScreen = ({ navigation }) => {
 
   useEffect(() => {
     handleFilterChange();
-  }, [selections, searchText]);
+  }, [selections, query]);
 
-  const handleFilterChange = async () => {
+  const handleFilterChange = useCallback(async () => {
     if (!isLoading) {
       const hasNoSelection = selections.every((item) => item === false);
       const activeCategories = MENU_CATEGORIES.filter((_category, index) => {
         return hasNoSelection ? true : selections[index];
       });
-      const filteredMenuItems = await DBService.filterByNameAndCategories(
-        searchText,
-        activeCategories,
-      );
+      const filteredMenuItems = await DBService.filterByNameAndCategories(query, activeCategories);
       preprocessMenuItems(filteredMenuItems);
       setMenuItems(filteredMenuItems);
     }
-  };
+  }, [isLoading, query, selections]);
 
   const MenuItem = ({ name, price, description, imagePath }) => (
     <View style={menuStyles.container}>
@@ -127,6 +126,17 @@ const MenuScreen = ({ navigation }) => {
     setSelections(copy);
   };
 
+  const lookup = useCallback((query) => {
+    setQuery(query);
+  }, []);
+
+  const debouncedLookup = useMemo(() => debounce(lookup, 500), [lookup]);
+
+  const handleSearchChange = async (text) => {
+    setSearchText(text);
+    debouncedLookup(text);
+  };
+
   const FlatListItemSeparator = () => {
     return <View style={menuStyles.separator} />;
   };
@@ -141,7 +151,7 @@ const MenuScreen = ({ navigation }) => {
         <Avatar imagePath={user.avatarPath} substitutionText={initials} size={50} />
       </TouchableOpacity>
       <View style={styles.container}>
-        <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
+        <TextInput style={styles.input} value={searchText} onChangeText={handleSearchChange} />
         <CategoryFilter
           categories={MENU_CATEGORIES}
           selections={selections}
