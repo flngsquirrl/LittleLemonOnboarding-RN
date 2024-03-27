@@ -36,7 +36,13 @@ const OnboardingScreen = () => {
           valid={isFirstNameValid}
           onChangeText={setFirstName}
         />
-        <InfoField value={email} label="Email*" valid={isEmailValid} onChangeText={setEmail} />
+        <InfoField
+          value={email}
+          label="Email*"
+          valid={isEmailValid}
+          keyboardType="email-address"
+          onChangeText={setEmail}
+        />
         <View style={styles.buttonContainer}>
           <Button title="Menu" enabled={isDataValid} onPress={processUserData} />
         </View>
