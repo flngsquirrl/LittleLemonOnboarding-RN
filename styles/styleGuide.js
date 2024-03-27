@@ -8,6 +8,10 @@ export const AppColors = {
   darkGrey: '#333333',
 };
 
+export const screenContainerStyles = {
+  padding: 15,
+};
+
 export const iconTextButtonStyles = {
   container: {
     flexDirection: 'row',

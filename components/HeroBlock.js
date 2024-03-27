@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import { AppColors } from '../styles/styleGuide';
+import { AppColors, screenContainerStyles } from '../styles/styleGuide';
 
 const introText =
   'We are a family owned Mediterranean restaurant, ' +
@@ -23,8 +23,8 @@ const HeroBlock = () => {
 
 const styles = StyleSheet.create({
   container: {
+    ...screenContainerStyles,
     backgroundColor: AppColors.darkGreen,
-    padding: 20,
   },
   intro: {
     container: {

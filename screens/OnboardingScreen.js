@@ -6,7 +6,7 @@ import HeroBlock from '../components/HeroBlock';
 import InfoField from '../components/InfoField';
 import UserContext from '../contexts/UserContext';
 import { saveUser } from '../persistence/userStorage';
-import { displayTitleStyles } from '../styles/styleGuide';
+import { displayTitleStyles, screenContainerStyles } from '../styles/styleGuide';
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
@@ -20,9 +20,9 @@ const OnboardingScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <>
       <HeroBlock />
-      <View style={styles.inputContainer}>
+      <View style={screenContainerStyles}>
         <Text style={displayTitleStyles}>Let us get to know you</Text>
         <InfoField value={firstName} label="First name" onChangeText={setFirstName} />
         <InfoField value={email} label="Email" onChangeText={setEmail} />
@@ -30,15 +30,11 @@ const OnboardingScreen = () => {
           <Button title="Menu" onPress={processUserData} />
         </View>
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  inputContainer: { padding: 15 },
   buttonContainer: {
     marginTop: 20,
   },
