@@ -43,15 +43,15 @@ const RootNavigator = () => {
     }
   };
 
-  if (isLoading) {
-    return null;
-  }
-
-  const onReady = async () => {
+  const onReady = useCallback(async () => {
     if (!isLoading) {
       await SplashScreen.hideAsync();
     }
-  };
+  }, [isLoading]);
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <NavigationContainer onReady={onReady}>
