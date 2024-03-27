@@ -104,17 +104,20 @@ const MenuScreen = ({ navigation }) => {
     return items;
   };
 
-  const MenuItem = ({ name, price, description, imagePath }) => (
-    <View style={menuStyles.container}>
-      <View style={menuStyles.infoContainer}>
-        <Text style={menuStyles.name}>{name}</Text>
-        <Text style={menuStyles.description} numberOfLines={2}>
-          {description}
-        </Text>
-        <Text style={menuStyles.price}>{'$' + price.toFixed(2)}</Text>
+  const MenuItem = useCallback(
+    ({ name, price, description, imagePath }) => (
+      <View style={menuStyles.container}>
+        <View style={menuStyles.infoContainer}>
+          <Text style={menuStyles.name}>{name}</Text>
+          <Text style={menuStyles.description} numberOfLines={2}>
+            {description}
+          </Text>
+          <Text style={menuStyles.price}>{'$' + price.toFixed(2)}</Text>
+        </View>
+        <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
       </View>
-      <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
-    </View>
+    ),
+    [],
   );
 
   const renderItem = ({ item }) => (
