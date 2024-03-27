@@ -15,6 +15,7 @@ import Avatar from '../components/Avatar';
 import CategoryFilter from '../components/CategoryFilter';
 import HeroBlock from '../components/HeroBlock';
 import UserContext from '../contexts/UserContext';
+import * as DataConsts from '../data/dataConsts';
 import { getMenuItems, getMenuItemImageUrl } from '../network/menuRequests';
 import * as DBService from '../persistence/dbService';
 import {
@@ -26,15 +27,13 @@ import { colorGuide, screenContainer } from '../styles/styleGuide';
 import { addIds } from '../utils/menuUtils';
 import { getInitials } from '../utils/profileUtils';
 
-const MENU_CATEGORIES = ['Starters', 'Mains', 'Desserts', 'Drinks', 'Specialties'];
-
 const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [query, setQuery] = useState('');
-  const [selections, setSelections] = useState(MENU_CATEGORIES.map((item) => false));
+  const [selections, setSelections] = useState(DataConsts.MENU_CATEGORIES.map((item) => false));
 
   const initials = getInitials(user.firstName, user.lastName);
 
@@ -61,7 +60,7 @@ const MenuScreen = ({ navigation }) => {
   const handleFilterChange = useCallback(async () => {
     if (!isLoading) {
       const hasNoSelection = selections.every((item) => item === false);
-      const activeCategories = MENU_CATEGORIES.filter((_category, index) => {
+      const activeCategories = DataConsts.MENU_CATEGORIES.filter((_category, index) => {
         return hasNoSelection ? true : selections[index];
       });
       const filteredMenuItems = await DBService.filterByNameAndCategories(query, activeCategories);
@@ -156,7 +155,7 @@ const MenuScreen = ({ navigation }) => {
       <View style={styles.container}>
         <TextInput style={styles.input} value={searchText} onChangeText={handleSearchChange} />
         <CategoryFilter
-          categories={MENU_CATEGORIES}
+          categories={DataConsts.MENU_CATEGORIES}
           selections={selections}
           onChange={handleSelectionsChange}
         />
