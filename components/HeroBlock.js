@@ -1,5 +1,6 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
+import { title, subtitle, paragraph } from '../styles/sharedStyles';
 import { AppColors, screenContainer } from '../styles/styleGuide';
 
 const introText =
@@ -11,10 +12,10 @@ const HeroBlock = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Little Lemon</Text>
-      <Text>Chicago</Text>
+      <Text style={[title, styles.title]}>Little Lemon</Text>
+      <Text style={[subtitle, styles.subtitle]}>Chicago</Text>
       <View style={styles.intro.container}>
-        <Text style={styles.intro.text}>{introText}</Text>
+        <Text style={[styles.intro.text, paragraph]}>{introText}</Text>
         <Image style={styles.intro.image} source={imageSource} />
       </View>
     </View>
@@ -26,15 +27,24 @@ const styles = StyleSheet.create({
     ...screenContainer,
     backgroundColor: AppColors.darkGreen,
   },
+  title: {
+    lineHeight: 50,
+  },
+  subtitle: {
+    lineHeight: 30,
+    position: 'relative',
+    top: -10,
+  },
   intro: {
     container: {
       flexDirection: 'row',
     },
     text: {
-      flex: 3,
+      flex: 2,
+      paddingRight: 10,
     },
     image: {
-      flex: 2,
+      flex: 1,
       aspectRatio: 1,
       borderRadius: 20,
     },

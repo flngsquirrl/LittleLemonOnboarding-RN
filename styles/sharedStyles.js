@@ -1,0 +1,19 @@
+import { AppColors, AppFonts } from './styleGuide';
+
+export const title = {
+  fontFamily: AppFonts.markazi,
+  fontSize: 50,
+  color: AppColors.lime,
+};
+
+export const subtitle = {
+  fontFamily: AppFonts.markazi,
+  fontSize: 30,
+  color: AppColors.white,
+};
+
+export const paragraph = {
+  fontFamily: AppFonts.karla,
+  fontSize: 18,
+  color: AppColors.white,
+};

@@ -8,6 +8,11 @@ export const AppColors = {
   darkGrey: '#333333',
 };
 
+export const AppFonts = {
+  markazi: 'MarkaziText-Regular',
+  karla: 'Karla-Regular',
+};
+
 export const screenContainer = {
   padding: 15,
 };
