@@ -125,11 +125,13 @@ const MenuScreen = ({ navigation }) => {
   return (
     <>
       <HeroBlock />
+      <TouchableOpacity
+        style={{ position: 'absolute', top: 15, right: 15 }}
+        activeOpacity={0.6}
+        onPress={() => navigation.navigate('profile')}>
+        <Avatar imagePath={user.avatarPath} substitutionText={initials} size={50} />
+      </TouchableOpacity>
       <View style={styles.container}>
-        <Text style={styles.title}>Menu</Text>
-        <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate('profile')}>
-          <Avatar imagePath={user.avatarPath} substitutionText={initials} size={100} />
-        </TouchableOpacity>
         <TextInput style={styles.input} value={searchText} onChangeText={setSearchText} />
         <CategoryFilter
           categories={MENU_CATEGORIES}
