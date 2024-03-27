@@ -83,17 +83,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
   },
-  inputTitle: {
-    fontSize: 15,
-    marginTop: 15,
-    marginBottom: 5,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: 'grey',
-    height: 40,
-    padding: 10,
-  },
   buttonWrapper: {
     marginTop: 10,
   },
