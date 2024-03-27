@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useState, useEffect, useCallback } from 'react';
 import * as React from 'react';
@@ -15,14 +16,14 @@ const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
 const RootNavigator = () => {
-  const [isLoading, setLoading] = useState(true);
+  const [isUserLoading, setUserLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [fontsLoaded, fontError] = useFonts({
+    'Karla-Regular': require('../assets/fonts/Karla-Regular.ttf'),
+    'MarkaziText-Regular': require('../assets/fonts/MarkaziText-Regular.ttf'),
+  });
 
-  const onReady = useCallback(async () => {
-    if (!isLoading) {
-      await SplashScreen.hideAsync();
-    }
-  }, [isLoading]);
+  const isLoading = isUserLoading || (!fontsLoaded && !fontError);
 
   useEffect(() => {
     loadUserData();
@@ -38,13 +39,19 @@ const RootNavigator = () => {
     } catch (error) {
       console.error('Error loading user', error);
     } finally {
-      setLoading(false);
+      setUserLoading(false);
     }
   };
 
   if (isLoading) {
     return null;
   }
+
+  const onReady = async () => {
+    if (!isLoading) {
+      await SplashScreen.hideAsync();
+    }
+  };
 
   return (
     <NavigationContainer onReady={onReady}>
