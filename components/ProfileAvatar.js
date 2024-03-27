@@ -3,7 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Avatar from './Avatar';
-import { iconTextButtonStyles } from '../styles/styleGuide';
+import { iconTextButton } from '../styles/styleGuide';
 import * as ProfileUtils from '../utils/profileUtils';
 
 const ProfileAvatar = ({ profile, onChange }) => {
@@ -37,8 +37,8 @@ const ProfileAvatar = ({ profile, onChange }) => {
         <Avatar imagePath={profile.avatarPath} substitutionText={initials} size={120} />
       </TouchableOpacity>
       <TouchableOpacity style={clearButtonStyles.container} onPress={clearAvatar}>
-        <MaterialCommunityIcons name="delete-forever-outline" style={iconTextButtonStyles.icon} />
-        <Text style={iconTextButtonStyles.text}>Clear</Text>
+        <MaterialCommunityIcons name="delete-forever-outline" style={iconTextButton.icon} />
+        <Text style={iconTextButton.text}>Clear</Text>
       </TouchableOpacity>
     </View>
   );
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
 const clearButtonStyles = StyleSheet.create({
   container: {
-    ...iconTextButtonStyles.container,
+    ...iconTextButton.container,
     marginTop: 10,
   },
 });

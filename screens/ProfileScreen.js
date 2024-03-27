@@ -7,7 +7,7 @@ import ProfileAvatar from '../components/ProfileAvatar';
 import UserContext from '../contexts/UserContext';
 import { saveUserAvatar, deleteUserAvatar } from '../persistence/userFileStorage';
 import { saveUser, deleteUser } from '../persistence/userStorage';
-import { screenContainerStyles } from '../styles/styleGuide';
+import { screenContainer } from '../styles/styleGuide';
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
@@ -36,7 +36,7 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={screenContainerStyles}>
+    <View style={screenContainer}>
       <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
       <InfoField
         value={profile.firstName}

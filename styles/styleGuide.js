@@ -8,11 +8,11 @@ export const AppColors = {
   darkGrey: '#333333',
 };
 
-export const screenContainerStyles = {
+export const screenContainer = {
   padding: 15,
 };
 
-export const iconTextButtonStyles = {
+export const iconTextButton = {
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -27,7 +27,7 @@ export const iconTextButtonStyles = {
   },
 };
 
-export const displayTitleStyles = {
+export const displayTitle = {
   fontSize: 20,
   color: AppColors.darkGrey,
   marginBottom: 10,

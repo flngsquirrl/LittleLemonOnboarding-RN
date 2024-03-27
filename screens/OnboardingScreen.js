@@ -6,7 +6,7 @@ import HeroBlock from '../components/HeroBlock';
 import InfoField from '../components/InfoField';
 import UserContext from '../contexts/UserContext';
 import { saveUser } from '../persistence/userStorage';
-import { displayTitleStyles, screenContainerStyles } from '../styles/styleGuide';
+import { displayTitle, screenContainer } from '../styles/styleGuide';
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
@@ -22,8 +22,8 @@ const OnboardingScreen = () => {
   return (
     <>
       <HeroBlock />
-      <View style={screenContainerStyles}>
-        <Text style={displayTitleStyles}>Let us get to know you</Text>
+      <View style={screenContainer}>
+        <Text style={displayTitle}>Let us get to know you</Text>
         <InfoField value={firstName} label="First name" onChangeText={setFirstName} />
         <InfoField value={email} label="Email" onChangeText={setEmail} />
         <View style={styles.buttonContainer}>

@@ -21,7 +21,7 @@ import {
   getMenuItemImagePath,
   downloadMenuItemImage,
 } from '../persistence/menuFileStorage';
-import { colorGuide, screenContainerStyles } from '../styles/styleGuide';
+import { colorGuide, screenContainer } from '../styles/styleGuide';
 import { addIds } from '../utils/menuUtils';
 import { getInitials } from '../utils/profileUtils';
 
@@ -155,7 +155,7 @@ const MenuScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    ...screenContainerStyles,
+    ...screenContainer,
     flex: 1,
   },
   title: {
