@@ -38,21 +38,7 @@ const MenuScreen = ({ navigation }) => {
 
   const initials = getInitials(user.firstName, user.lastName);
 
-  const fetchDataFromNetwork = async () => {
-    let items = await getMenuItems();
-    items = addIds(items);
-
-    await prepareMenuDirectory();
-    const downloadPromises = items.map(async (item) => {
-      const imageUrl = getMenuItemImageUrl(item.image);
-      return await downloadMenuItemImage(imageUrl, item.image);
-    });
-    await Promise.allSettled(downloadPromises);
-
-    return items;
-  };
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       await DBService.createTable();
       //await DBService.dropTable();
@@ -70,21 +56,7 @@ const MenuScreen = ({ navigation }) => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const preprocessMenuItems = (items) => {
-    items.forEach((item) => {
-      item.imagePath = getMenuItemImagePath(item.image);
-    });
-  };
-
-  useEffect(() => {
-    loadData();
   }, []);
-
-  useEffect(() => {
-    handleFilterChange();
-  }, [selections, query]);
 
   const handleFilterChange = useCallback(async () => {
     if (!isLoading) {
@@ -97,6 +69,40 @@ const MenuScreen = ({ navigation }) => {
       setMenuItems(filteredMenuItems);
     }
   }, [isLoading, query, selections]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  useEffect(() => {
+    handleFilterChange();
+  }, [handleFilterChange]);
+
+  const lookup = useCallback((query) => {
+    setQuery(query);
+  }, []);
+
+  const debouncedLookup = useMemo(() => debounce(lookup, 500), [lookup]);
+
+  const preprocessMenuItems = (items) => {
+    items.forEach((item) => {
+      item.imagePath = getMenuItemImagePath(item.image);
+    });
+  };
+
+  const fetchDataFromNetwork = async () => {
+    let items = await getMenuItems();
+    items = addIds(items);
+
+    await prepareMenuDirectory();
+    const downloadPromises = items.map(async (item) => {
+      const imageUrl = getMenuItemImageUrl(item.image);
+      return await downloadMenuItemImage(imageUrl, item.image);
+    });
+    await Promise.allSettled(downloadPromises);
+
+    return items;
+  };
 
   const MenuItem = ({ name, price, description, imagePath }) => (
     <View style={menuStyles.container}>
@@ -125,12 +131,6 @@ const MenuScreen = ({ navigation }) => {
     copy[index] = !selections[index];
     setSelections(copy);
   };
-
-  const lookup = useCallback((query) => {
-    setQuery(query);
-  }, []);
-
-  const debouncedLookup = useMemo(() => debounce(lookup, 500), [lookup]);
 
   const handleSearchChange = async (text) => {
     setSearchText(text);
