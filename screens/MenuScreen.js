@@ -51,18 +51,23 @@ const MenuScreen = ({ navigation }) => {
   };
 
   const loadData = async () => {
-    await DBService.createTable();
-    //await DBService.dropTable();
-    let items = await DBService.getMenuItems();
-    if (items.length === 0) {
-      items = await fetchDataFromNetwork();
-      DBService.saveMenuItems(items);
+    try {
+      await DBService.createTable();
+      //await DBService.dropTable();
+      let items = await DBService.getMenuItems();
+      if (items.length === 0) {
+        items = await fetchDataFromNetwork();
+        DBService.saveMenuItems(items);
+      }
+
+      preprocessMenuItems(items);
+
+      setMenuItems(items);
+    } catch (error) {
+      console.error('Error preparing menu data', error);
+    } finally {
+      setLoading(false);
     }
-
-    preprocessMenuItems(items);
-
-    setMenuItems(items);
-    setLoading(false);
   };
 
   const preprocessMenuItems = (items) => {
@@ -75,20 +80,24 @@ const MenuScreen = ({ navigation }) => {
     loadData();
   }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const hasNoSelection = selections.every((item) => item === false);
-  //     const activeCategories = MENU_CATEGORIES.filter((_category, index) => {
-  //       return hasNoSelection ? true : selections[index];
-  //     });
-  //     const filteredMenuItems = await DBService.filterByNameAndCategories(
-  //       searchText,
-  //       activeCategories
-  //     );
-  //     preprocessMenuItems(filteredMenuItems);
-  //     setMenuItems(filteredMenuItems);
-  //   })();
-  // }, [selections, searchText]);
+  useEffect(() => {
+    handleFilterChange();
+  }, [selections, searchText]);
+
+  const handleFilterChange = async () => {
+    if (!isLoading) {
+      const hasNoSelection = selections.every((item) => item === false);
+      const activeCategories = MENU_CATEGORIES.filter((_category, index) => {
+        return hasNoSelection ? true : selections[index];
+      });
+      const filteredMenuItems = await DBService.filterByNameAndCategories(
+        searchText,
+        activeCategories,
+      );
+      preprocessMenuItems(filteredMenuItems);
+      setMenuItems(filteredMenuItems);
+    }
+  };
 
   const MenuItem = ({ name, price, description, imagePath }) => (
     <View style={menuStyles.container}>
@@ -112,7 +121,7 @@ const MenuScreen = ({ navigation }) => {
     />
   );
 
-  const handleFilterChange = (index) => {
+  const handleSelectionsChange = (index) => {
     const copy = [...selections];
     copy[index] = !selections[index];
     setSelections(copy);
@@ -136,7 +145,7 @@ const MenuScreen = ({ navigation }) => {
         <CategoryFilter
           categories={MENU_CATEGORIES}
           selections={selections}
-          onChange={handleFilterChange}
+          onChange={handleSelectionsChange}
         />
         {isLoading ? (
           <ActivityIndicator />
