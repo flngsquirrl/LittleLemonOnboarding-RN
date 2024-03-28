@@ -52,11 +52,13 @@ const ProfileScreen = () => {
         value={profile.email}
         label="Email"
         onChangeText={(value) => setProfile({ ...profile, email: value })}
+        keyboardType="email-address"
       />
       <InfoField
         value={profile.phoneNumber}
         label="Phone number"
         onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
+        keyboardType="number-pad"
       />
       <View style={styles.buttonsContainer}>
         <ButtonWrapper title="Save changes" onPress={saveChanges} />
