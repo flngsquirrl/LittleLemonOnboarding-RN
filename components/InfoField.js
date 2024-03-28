@@ -1,19 +1,25 @@
 import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { MaskedTextInput } from 'react-native-mask-text';
 
 import { input, inputContainer, inputLabel } from '../styles/sharedStyles';
 
-const InfoField = ({ label, value, keyboardType, onChangeText }) => {
+const InfoField = ({ label, value, mask, keyboardType = 'default', onChangeText }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput
+      <Input
         style={styles.input}
-        keyboardType={keyboardType ? keyboardType : 'default'}
+        keyboardType={keyboardType}
         value={value}
         onChangeText={onChangeText}
+        mask={mask}
       />
     </View>
   );
+};
+
+const Input = (props) => {
+  return props.mask ? <MaskedTextInput {...props} /> : <TextInput {...props} />;
 };
 
 const styles = StyleSheet.create({

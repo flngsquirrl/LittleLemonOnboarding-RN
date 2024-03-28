@@ -19,7 +19,8 @@ const ProfileScreen = () => {
   const isDataValid = isFirstNameValid && isEmailNameValid;
 
   const saveChanges = async () => {
-    let updatedUser = { ...profile };
+    const unmaskedPhoneNumber = userUtils.unmaskPhoneNumber(profile.phoneNumber);
+    let updatedUser = { ...profile, phoneNumber: unmaskedPhoneNumber };
     if (profile.hasAvatar) {
       const userAvatarPath = await saveUserAvatar(profile.avatarPath);
       updatedUser = { ...updatedUser, avatarPath: userAvatarPath };
@@ -64,6 +65,7 @@ const ProfileScreen = () => {
         label="Phone number"
         onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
         keyboardType="number-pad"
+        mask="(999) 999-9999"
       />
       <View style={styles.buttonsContainer}>
         <ButtonWrapper title="Save changes" onPress={saveChanges} enabled={isDataValid} />
