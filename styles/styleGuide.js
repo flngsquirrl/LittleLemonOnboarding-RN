@@ -73,6 +73,9 @@ export const colorGuide = {
     color: AppColors.white,
     borderColor: AppColors.white,
   },
+  checkBox: {
+    color: AppColors.orange,
+  },
   selectionBox: {
     basic: {
       color: AppColors.darkGrey,

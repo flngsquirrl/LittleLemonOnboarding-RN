@@ -51,6 +51,21 @@ export const inputLabel = {
   color: colorGuide.label.text,
 };
 
+export const checkBox = {
+  section: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 16,
+    color: colorGuide.input.text,
+  },
+  box: {
+    marginRight: 8,
+    marginVertical: 5,
+  },
+};
+
 export const screenContainer = {
   padding: 15,
 };

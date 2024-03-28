@@ -15,7 +15,7 @@ const OnboardingScreen = () => {
   const [email, setEmail] = useState('');
 
   const processUserData = () => {
-    const currUser = { firstName, email };
+    const currUser = { firstName, email, emailNotifications: {} };
     setUser(currUser);
     saveUser(currUser);
   };
