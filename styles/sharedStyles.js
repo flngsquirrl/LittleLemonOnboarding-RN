@@ -85,9 +85,3 @@ export const iconTextButton = {
     color: AppColors.darkGreen,
   },
 };
-
-export const displayTitle = {
-  fontSize: 20,
-  color: AppColors.darkGrey,
-  marginBottom: 10,
-};
