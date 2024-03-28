@@ -21,11 +21,13 @@ export const leadText = {
 export const sectionTitle = {
   textTransform: 'uppercase',
   fontWeight: 'bold',
+  color: AppColors.darkGrey,
 };
 
 export const blockTitle = {
   fontWeight: 'bold',
   fontSize: 16,
+  color: AppColors.darkGrey,
 };
 
 export const paragraph = {
