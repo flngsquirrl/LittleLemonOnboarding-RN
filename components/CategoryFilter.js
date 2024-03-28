@@ -1,5 +1,6 @@
 import { View, Pressable, Text, StyleSheet } from 'react-native';
 
+import { sectionTitle } from '../styles/sharedStyles';
 import { colorGuide } from '../styles/styleGuide';
 
 const CategoryFilter = ({ categories, selections, onChange }) => {
@@ -26,6 +27,7 @@ const CategoryFilter = ({ categories, selections, onChange }) => {
 
 const styles = StyleSheet.create({
   prompt: {
+    ...sectionTitle,
     marginBottom: 10,
   },
   container: {

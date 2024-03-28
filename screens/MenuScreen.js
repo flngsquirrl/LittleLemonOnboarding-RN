@@ -24,7 +24,13 @@ import {
   getMenuItemImagePath,
   downloadMenuItemImage,
 } from '../persistence/menuFileStorage';
-import { input, screenContainer } from '../styles/sharedStyles';
+import {
+  input,
+  inputContainer,
+  screenContainer,
+  cardTitle,
+  paragraph,
+} from '../styles/sharedStyles';
 import { AppColors, colorGuide } from '../styles/styleGuide';
 import { addIds } from '../utils/menuUtils';
 import { getInitials } from '../utils/profileUtils';
@@ -222,18 +228,18 @@ const menuStyles = StyleSheet.create({
     flex: 2,
   },
   name: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    ...cardTitle,
     flex: 1,
   },
   description: {
+    ...paragraph,
     marginTop: 10,
     marginRight: 10,
     flex: 1,
   },
   price: {
+    ...paragraph,
     marginTop: 10,
-    fontSize: 20,
     flex: 1,
   },
   image: {
@@ -249,12 +255,13 @@ const menuStyles = StyleSheet.create({
 
 const searchBoxStyles = StyleSheet.create({
   container: {
-    ...input,
+    ...inputContainer,
     padding: 0,
     backgroundColor: AppColors.lightGrey,
     flexDirection: 'row',
   },
   input: {
+    ...input,
     flex: 1,
     padding: 0,
     paddingLeft: 10,

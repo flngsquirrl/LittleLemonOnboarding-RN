@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 16,
   },
   basic: {
     container: {

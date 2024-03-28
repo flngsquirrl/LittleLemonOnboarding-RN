@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import { title, subtitle, paragraph, screenContainer } from '../styles/sharedStyles';
+import { title, subtitle, leadText, screenContainer } from '../styles/sharedStyles';
 import { AppColors } from '../styles/styleGuide';
 
 const introText =
@@ -15,7 +15,7 @@ const HeroBlock = () => {
       <Text style={[title, styles.title]}>Little Lemon</Text>
       <Text style={[subtitle, styles.subtitle]}>Chicago</Text>
       <View style={styles.intro.container}>
-        <Text style={[styles.intro.text, paragraph]}>{introText}</Text>
+        <Text style={[styles.intro.text, leadText]}>{introText}</Text>
         <Image style={styles.intro.image} source={imageSource} />
       </View>
     </View>

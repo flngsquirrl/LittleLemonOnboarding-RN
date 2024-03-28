@@ -12,19 +12,43 @@ export const subtitle = {
   color: AppColors.white,
 };
 
-export const paragraph = {
+export const leadText = {
   fontFamily: AppFonts.karla,
   fontSize: 18,
   color: AppColors.white,
 };
 
-export const input = {
+export const sectionTitle = {
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
+};
+
+export const cardTitle = {
+  fontWeight: 'bold',
+  fontSize: 16,
+};
+
+export const paragraph = {
+  fontSize: 14,
+  color: AppColors.darkGreen,
+};
+
+export const inputContainer = {
   borderWidth: 1,
   borderColor: colorGuide.input.border,
   color: colorGuide.input.text,
   borderRadius: 7,
   height: 40,
   padding: 10,
+};
+
+export const input = {
+  fontSize: 16,
+};
+
+export const inputLabel = {
+  fontSize: 14,
+  color: colorGuide.label.text,
 };
 
 export const screenContainer = {
