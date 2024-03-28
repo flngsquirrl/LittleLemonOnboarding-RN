@@ -62,11 +62,10 @@ export const iconTextButton = {
   },
   icon: {
     color: AppColors.darkGreen,
-    fontSize: 20,
+    fontSize: 16,
   },
   text: {
     color: AppColors.darkGreen,
-    fontWeight: 'bold',
   },
 };
 

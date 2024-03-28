@@ -1,4 +1,4 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -37,7 +37,7 @@ const ProfileAvatar = ({ profile, onChange }) => {
         <Avatar imagePath={profile.avatarPath} substitutionText={initials} size={120} />
       </TouchableOpacity>
       <TouchableOpacity style={clearButtonStyles.container} onPress={clearAvatar}>
-        <MaterialCommunityIcons name="delete-forever-outline" style={iconTextButton.icon} />
+        <MaterialIcons name="clear" style={iconTextButton.icon} />
         <Text style={iconTextButton.text}>Clear</Text>
       </TouchableOpacity>
     </View>
