@@ -7,7 +7,7 @@ import InfoField from '../components/InfoField';
 import UserContext from '../contexts/UserContext';
 import { saveUser } from '../persistence/userStorage';
 import { displayTitle, screenContainer } from '../styles/sharedStyles';
-import * as UserUtils from '../utils/profileUtils';
+import * as userUtils from '../utils/userUtils';
 
 const OnboardingScreen = () => {
   const { setUser } = useContext(UserContext);
@@ -20,8 +20,8 @@ const OnboardingScreen = () => {
     saveUser(currUser);
   };
 
-  const isFirstNameValid = UserUtils.isFirstNameValid(firstName);
-  const isEmailValid = UserUtils.isEmailValid(email);
+  const isFirstNameValid = userUtils.isFirstNameValid(firstName);
+  const isEmailValid = userUtils.isEmailValid(email);
   const isDataValid = isFirstNameValid && isEmailValid;
 
   return (

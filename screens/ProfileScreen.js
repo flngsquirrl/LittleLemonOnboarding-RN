@@ -8,7 +8,7 @@ import UserContext from '../contexts/UserContext';
 import { saveUserAvatar, deleteUserAvatar } from '../persistence/userFileStorage';
 import { saveUser, deleteUser } from '../persistence/userStorage';
 import { screenContainer } from '../styles/sharedStyles';
-import * as userUtils from '../utils/profileUtils';
+import * as userUtils from '../utils/userUtils';
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);

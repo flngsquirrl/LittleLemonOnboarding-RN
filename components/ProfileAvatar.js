@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Avatar from './Avatar';
 import { iconTextButton } from '../styles/sharedStyles';
-import * as ProfileUtils from '../utils/profileUtils';
+import * as userUtils from '../utils/userUtils';
 
 const ProfileAvatar = ({ profile, onChange }) => {
   const pickImage = async () => {
@@ -29,7 +29,7 @@ const ProfileAvatar = ({ profile, onChange }) => {
     onChange(newAvatarPath);
   };
 
-  const initials = ProfileUtils.getInitials(profile.firstName, profile.lastName);
+  const initials = userUtils.getInitials(profile.firstName, profile.lastName);
 
   return (
     <View style={styles.container}>

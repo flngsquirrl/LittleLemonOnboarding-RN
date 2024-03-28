@@ -33,7 +33,7 @@ import {
 } from '../styles/sharedStyles';
 import { AppColors, colorGuide } from '../styles/styleGuide';
 import { addIds } from '../utils/menuUtils';
-import { getInitials } from '../utils/profileUtils';
+import { getInitials } from '../utils/userUtils';
 
 const MenuScreen = ({ navigation }) => {
   const { user } = useContext(UserContext);
