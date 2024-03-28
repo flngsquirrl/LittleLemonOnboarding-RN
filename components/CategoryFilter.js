@@ -4,26 +4,33 @@ import { colorGuide } from '../styles/styleGuide';
 
 const CategoryFilter = ({ categories, selections, onChange }) => {
   return (
-    <View style={styles.container}>
-      {categories.map((category, index) => (
-        <Pressable
-          style={[styles.item, selections[index] && styles.selectedItem]}
-          key={index}
-          onPress={() => {
-            onChange(index);
-          }}>
-          <Text style={[styles.text, selections[index] && styles.selectedText]}>
-            {categories[index]}
-          </Text>
-        </Pressable>
-      ))}
-    </View>
+    <>
+      <Text style={styles.prompt}>Order for Delivery</Text>
+      <View style={styles.container}>
+        {categories.map((category, index) => (
+          <Pressable
+            style={[styles.item, selections[index] && styles.selectedItem]}
+            key={index}
+            onPress={() => {
+              onChange(index);
+            }}>
+            <Text style={[styles.text, selections[index] && styles.selectedText]}>
+              {categories[index]}
+            </Text>
+          </Pressable>
+        ))}
+      </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  prompt: {
+    marginBottom: 10,
+  },
   container: {
     flexDirection: 'row',
+    marginBottom: 10,
   },
   item: {
     padding: 5,
