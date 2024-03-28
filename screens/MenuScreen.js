@@ -192,6 +192,7 @@ const MenuScreen = ({ navigation }) => {
             keyExtractor={(item) => item.id}
             renderItem={renderItem}
             ItemSeparatorComponent={FlatListItemSeparator}
+            showsVerticalScrollIndicator="false"
           />
         )}
       </View>
