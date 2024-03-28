@@ -52,7 +52,7 @@ const MenuScreen = ({ navigation }) => {
       let items = await DBService.getMenuItems();
       if (items.length === 0) {
         items = await fetchDataFromNetwork();
-        DBService.saveMenuItems(items);
+        await DBService.saveMenuItems(items);
       }
 
       preprocessMenuItems(items);
