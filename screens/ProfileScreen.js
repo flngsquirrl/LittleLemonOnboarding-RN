@@ -18,7 +18,8 @@ const ProfileScreen = () => {
 
   const isFirstNameValid = userUtils.isFirstNameValid(profile.firstName);
   const isEmailValid = userUtils.isEmailValid(profile.email);
-  const isDataValid = isFirstNameValid && isEmailValid;
+  const isPhoneNumberValid = userUtils.isPhoneNumberValid(profile.phoneNumber);
+  const isDataValid = isFirstNameValid && isEmailValid && isPhoneNumberValid;
 
   const saveChanges = async () => {
     const unmaskedPhoneNumber = userUtils.unmaskPhoneNumber(profile.phoneNumber);
