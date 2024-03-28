@@ -14,31 +14,6 @@ export const AppFonts = {
   karla: 'Karla-Regular',
 };
 
-export const screenContainer = {
-  padding: 15,
-};
-
-export const iconTextButton = {
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  icon: {
-    color: AppColors.darkGreen,
-    fontSize: 20,
-  },
-  text: {
-    color: AppColors.darkGreen,
-    fontWeight: 'bold',
-  },
-};
-
-export const displayTitle = {
-  fontSize: 20,
-  color: AppColors.darkGrey,
-  marginBottom: 10,
-};
-
 export const colorGuide = {
   headerTitle: {
     background: AppColors.lime,
