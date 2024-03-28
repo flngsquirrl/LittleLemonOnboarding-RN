@@ -76,7 +76,7 @@ const ProfileScreen = () => {
 
   return (
     <View style={styles.screenContainer}>
-      <ScrollView showsVerticalScrollIndicator="false">
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.avatar}>
           <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
         </View>
