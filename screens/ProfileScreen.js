@@ -14,7 +14,7 @@ import * as userUtils from '../utils/userUtils';
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
-  const [profile, setProfile] = useState({ ...user, phoneNumber: '5555555555' });
+  const [profile, setProfile] = useState({ ...user });
 
   const isFirstNameValid = userUtils.isFirstNameValid(profile.firstName);
   const isEmailValid = userUtils.isEmailValid(profile.email);
