@@ -7,7 +7,7 @@ import ProfileAvatar from '../components/ProfileAvatar';
 import UserContext from '../contexts/UserContext';
 import { saveUserAvatar, deleteUserAvatar } from '../persistence/userFileStorage';
 import { saveUser, deleteUser } from '../persistence/userStorage';
-import { screenContainer } from '../styles/styleGuide';
+import { screenContainer } from '../styles/sharedStyles';
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);

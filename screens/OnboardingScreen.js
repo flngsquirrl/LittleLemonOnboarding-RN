@@ -6,7 +6,7 @@ import HeroBlock from '../components/HeroBlock';
 import InfoField from '../components/InfoField';
 import UserContext from '../contexts/UserContext';
 import { saveUser } from '../persistence/userStorage';
-import { displayTitle, screenContainer } from '../styles/styleGuide';
+import { displayTitle, screenContainer } from '../styles/sharedStyles';
 import * as UserUtils from '../utils/profileUtils';
 
 const OnboardingScreen = () => {

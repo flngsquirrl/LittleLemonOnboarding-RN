@@ -24,8 +24,8 @@ import {
   getMenuItemImagePath,
   downloadMenuItemImage,
 } from '../persistence/menuFileStorage';
-import { input } from '../styles/sharedStyles';
-import { AppColors, colorGuide, screenContainer } from '../styles/styleGuide';
+import { input, screenContainer } from '../styles/sharedStyles';
+import { AppColors, colorGuide } from '../styles/styleGuide';
 import { addIds } from '../utils/menuUtils';
 import { getInitials } from '../utils/profileUtils';
 

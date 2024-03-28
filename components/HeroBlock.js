@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import { title, subtitle, paragraph } from '../styles/sharedStyles';
-import { AppColors, screenContainer } from '../styles/styleGuide';
+import { title, subtitle, paragraph, screenContainer } from '../styles/sharedStyles';
+import { AppColors } from '../styles/styleGuide';
 
 const introText =
   'We are a family owned Mediterranean restaurant, ' +
