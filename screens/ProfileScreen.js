@@ -83,7 +83,7 @@ const ProfileScreen = () => {
         </View>
         <InfoField
           value={profile.firstName}
-          label="First name"
+          label="First name*"
           onChangeText={(value) => setProfile({ ...profile, firstName: value })}
         />
         <InfoField
@@ -93,7 +93,7 @@ const ProfileScreen = () => {
         />
         <InfoField
           value={profile.email}
-          label="Email"
+          label="Email*"
           onChangeText={(value) => setProfile({ ...profile, email: value })}
           keyboardType="email-address"
         />
