@@ -23,7 +23,7 @@ export const sectionTitle = {
   fontWeight: 'bold',
 };
 
-export const cardTitle = {
+export const blockTitle = {
   fontWeight: 'bold',
   fontSize: 16,
 };

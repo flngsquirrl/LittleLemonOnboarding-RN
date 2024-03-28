@@ -28,7 +28,7 @@ import {
   input,
   inputContainer,
   screenContainer,
-  cardTitle,
+  blockTitle,
   paragraph,
 } from '../styles/sharedStyles';
 import { AppColors, colorGuide } from '../styles/styleGuide';
@@ -229,7 +229,7 @@ const menuStyles = StyleSheet.create({
     flex: 3,
   },
   name: {
-    ...cardTitle,
+    ...blockTitle,
     flex: 1,
   },
   description: {

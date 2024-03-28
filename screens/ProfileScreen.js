@@ -8,7 +8,7 @@ import ProfileAvatar from '../components/ProfileAvatar';
 import UserContext from '../contexts/UserContext';
 import { saveUserAvatar, deleteUserAvatar } from '../persistence/userFileStorage';
 import { saveUser, deleteUser } from '../persistence/userStorage';
-import { screenContainer, checkBox, cardTitle } from '../styles/sharedStyles';
+import { screenContainer, checkBox, blockTitle } from '../styles/sharedStyles';
 import { colorGuide } from '../styles/styleGuide';
 import * as userUtils from '../utils/userUtils';
 
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   notificationsTitle: {
-    ...cardTitle,
+    ...blockTitle,
     marginBottom: 10,
   },
   buttonsContainer: {
