@@ -8,10 +8,15 @@ import UserContext from '../contexts/UserContext';
 import { saveUserAvatar, deleteUserAvatar } from '../persistence/userFileStorage';
 import { saveUser, deleteUser } from '../persistence/userStorage';
 import { screenContainer } from '../styles/sharedStyles';
+import * as userUtils from '../utils/profileUtils';
 
 const ProfileScreen = () => {
   const { user, setUser } = useContext(UserContext);
   const [profile, setProfile] = useState({ ...user });
+
+  const isFirstNameValid = userUtils.isFirstNameValid(profile.firstName);
+  const isEmailNameValid = userUtils.isEmailValid(profile.email);
+  const isDataValid = isFirstNameValid && isEmailNameValid;
 
   const saveChanges = async () => {
     let updatedUser = { ...profile };
@@ -61,7 +66,7 @@ const ProfileScreen = () => {
         keyboardType="number-pad"
       />
       <View style={styles.buttonsContainer}>
-        <ButtonWrapper title="Save changes" onPress={saveChanges} />
+        <ButtonWrapper title="Save changes" onPress={saveChanges} enabled={isDataValid} />
         <ButtonWrapper
           title="Reset changes"
           isDestructive="true"
