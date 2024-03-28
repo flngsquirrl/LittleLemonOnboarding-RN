@@ -23,7 +23,6 @@ const OnboardingScreen = () => {
   const isFirstNameValid = UserUtils.isFirstNameValid(firstName);
   const isEmailValid = UserUtils.isEmailValid(email);
   const isDataValid = isFirstNameValid && isEmailValid;
-  console.log(isDataValid);
 
   return (
     <>
