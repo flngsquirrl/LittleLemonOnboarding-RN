@@ -5,6 +5,7 @@ export const AppColors = {
   peach: '#FBDABB',
   white: 'white',
   grey: 'grey',
+  lightGrey: '#EDEFEE',
   darkGrey: '#333333',
 };
 
@@ -56,6 +57,9 @@ export const colorGuide = {
   },
   separatorLine: {
     color: AppColors.grey,
+  },
+  heroBlock: {
+    background: AppColors.darkGreen,
   },
   input: {
     border: AppColors.grey,

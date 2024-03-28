@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import debounce from 'lodash.debounce';
 import { useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import {
@@ -23,7 +24,8 @@ import {
   getMenuItemImagePath,
   downloadMenuItemImage,
 } from '../persistence/menuFileStorage';
-import { colorGuide, screenContainer } from '../styles/styleGuide';
+import { input } from '../styles/sharedStyles';
+import { AppColors, colorGuide, screenContainer } from '../styles/styleGuide';
 import { addIds } from '../utils/menuUtils';
 import { getInitials } from '../utils/profileUtils';
 
@@ -143,22 +145,39 @@ const MenuScreen = ({ navigation }) => {
     return <View style={menuStyles.separator} />;
   };
 
-  return (
-    <>
-      <HeroBlock />
+  const MenuAvatar = () => {
+    return (
       <TouchableOpacity
         style={styles.avatar}
         activeOpacity={0.6}
         onPress={() => navigation.navigate('profile')}>
         <Avatar imagePath={user.avatarPath} substitutionText={initials} size={50} />
       </TouchableOpacity>
+    );
+  };
+
+  return (
+    <>
+      <HeroBlock />
+      <MenuAvatar />
+      <View style={styles.searchContainer}>
+        <View style={searchBoxStyles.container}>
+          <Ionicons name="search" size={20} style={searchBoxStyles.icon} />
+          <TextInput
+            style={searchBoxStyles.input}
+            value={searchText}
+            onChangeText={handleSearchChange}
+            clearButtonMode="always"
+          />
+        </View>
+      </View>
       <View style={styles.container}>
-        <TextInput style={styles.input} value={searchText} onChangeText={handleSearchChange} />
         <CategoryFilter
           categories={DataConsts.MENU_CATEGORIES}
           selections={selections}
           onChange={handleSelectionsChange}
         />
+        <FlatListItemSeparator />
         {isLoading ? (
           <ActivityIndicator />
         ) : (
@@ -175,18 +194,17 @@ const MenuScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  searchContainer: {
+    backgroundColor: colorGuide.heroBlock.background,
+    paddingHorizontal: 15,
+    paddingBottom: 15,
+  },
   container: {
     ...screenContainer,
     flex: 1,
   },
   title: {
     fontSize: 30,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: 'grey',
-    height: 40,
-    padding: 10,
   },
   avatar: {
     position: 'absolute',
@@ -226,6 +244,27 @@ const menuStyles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     width: '100%',
     backgroundColor: colorGuide.separatorLine.color,
+  },
+});
+
+const searchBoxStyles = StyleSheet.create({
+  container: {
+    ...input,
+    padding: 0,
+    backgroundColor: AppColors.lightGrey,
+    flexDirection: 'row',
+  },
+  input: {
+    flex: 1,
+    padding: 0,
+    paddingLeft: 10,
+    borderLeftWidth: 1,
+    borderLeftColor: AppColors.grey,
+  },
+  icon: {
+    alignContent: 'center',
+    padding: 10,
+    color: AppColors.darkGrey,
   },
 });
 
