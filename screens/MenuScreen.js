@@ -225,7 +225,7 @@ const menuStyles = StyleSheet.create({
     paddingVertical: 10,
   },
   infoContainer: {
-    flex: 2,
+    flex: 3,
   },
   name: {
     ...cardTitle,
@@ -245,6 +245,9 @@ const menuStyles = StyleSheet.create({
   image: {
     flex: 1,
     aspectRatio: 1,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: AppColors.lightGrey,
   },
   separator: {
     height: StyleSheet.hairlineWidth,
