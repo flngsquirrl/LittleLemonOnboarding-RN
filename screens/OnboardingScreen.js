@@ -41,6 +41,7 @@ const OnboardingScreen = () => {
           valid={isEmailValid}
           keyboardType="email-address"
           onChangeText={setEmail}
+          autoCapitalize="none"
         />
         <View style={styles.buttonContainer}>
           <Button title="Menu" enabled={isDataValid} onPress={processUserData} />

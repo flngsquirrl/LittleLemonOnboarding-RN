@@ -101,6 +101,7 @@ const ProfileScreen = () => {
           label="Email*"
           onChangeText={(value) => setProfile({ ...profile, email: value })}
           keyboardType="email-address"
+          autoCapitalize="none"
         />
         <InfoField
           value={profile.phoneNumber}

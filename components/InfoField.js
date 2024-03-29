@@ -3,7 +3,15 @@ import { MaskedTextInput } from 'react-native-mask-text';
 
 import { input, inputContainer, inputLabel } from '../styles/sharedStyles';
 
-const InfoField = ({ label, value, mask, keyboardType = 'default', onChangeText }) => {
+const InfoField = ({
+  label,
+  value,
+  mask,
+  keyboardType = 'default',
+  autoCapitalize = 'sentences',
+  onChangeText,
+}) => {
+  console.log(autoCapitalize);
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -13,6 +21,7 @@ const InfoField = ({ label, value, mask, keyboardType = 'default', onChangeText 
         value={value}
         onChangeText={onChangeText}
         mask={mask}
+        autoCapitalize={autoCapitalize}
       />
     </View>
   );
