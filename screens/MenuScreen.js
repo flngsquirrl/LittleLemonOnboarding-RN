@@ -292,7 +292,7 @@ const searchBoxStyles = StyleSheet.create({
   container: {
     ...inputContainer,
     padding: 0,
-    backgroundColor: AppColors.lightGrey,
+    backgroundColor: AppColors.white,
     flexDirection: 'row',
   },
   input: {
