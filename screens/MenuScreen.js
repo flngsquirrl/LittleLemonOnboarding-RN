@@ -93,7 +93,9 @@ const MenuScreen = ({ navigation }) => {
 
   const preprocessMenuItems = (items) => {
     items.forEach((item) => {
-      item.imagePath = getMenuItemImagePath(item.image);
+      if (!DataConsts.MISSING_IMAGES.get(item.image)) {
+        item.imagePath = getMenuItemImagePath(item.image);
+      }
     });
   };
 
@@ -102,17 +104,26 @@ const MenuScreen = ({ navigation }) => {
     items = addIds(items);
 
     await prepareMenuDirectory();
+
     const downloadPromises = items.map(async (item) => {
-      const imageUrl = getMenuItemImageUrl(item.image);
-      return await downloadMenuItemImage(imageUrl, item.image);
+      if (DataConsts.MISSING_IMAGES.get(item.image)) {
+        console.debug('Missing image will be read from assets', item.image);
+      } else {
+        const imageUrl = getMenuItemImageUrl(item.image);
+        return await downloadMenuItemImage(imageUrl, item.image);
+      }
     });
     await Promise.allSettled(downloadPromises);
 
     return items;
   };
 
-  const MenuItem = useCallback(
-    ({ name, price, description, imagePath }) => (
+  const MenuItem = useCallback(({ name, price, description, image, imagePath }) => {
+    let imageSource;
+    if (!imagePath) {
+      imageSource = DataConsts.MISSING_IMAGES.get(image);
+    }
+    return (
       <View style={menuStyles.container}>
         <View style={menuStyles.infoContainer}>
           <Text style={menuStyles.name}>{name}</Text>
@@ -121,17 +132,21 @@ const MenuScreen = ({ navigation }) => {
           </Text>
           <Text style={menuStyles.price}>{'$' + price.toFixed(2)}</Text>
         </View>
-        <Image style={menuStyles.image} source={{ uri: `${imagePath}` }} alt={`Photo of ${name}`} />
+        <Image
+          style={menuStyles.image}
+          source={imagePath ? { uri: imagePath } : imageSource}
+          alt={`Photo of ${name}`}
+        />
       </View>
-    ),
-    [],
-  );
+    );
+  }, []);
 
   const renderItem = ({ item }) => (
     <MenuItem
       name={item.name}
       price={item.price}
       description={item.description}
+      image={item.image}
       imagePath={item.imagePath}
     />
   );
@@ -188,11 +203,13 @@ const MenuScreen = ({ navigation }) => {
           <ActivityIndicator />
         ) : (
           <FlatList
+            style={styles.list}
             data={menuItems}
             keyExtractor={(item) => item.id}
             renderItem={renderItem}
             ItemSeparatorComponent={FlatListItemSeparator}
             showsVerticalScrollIndicator={false}
+            keyboardDismissMode="on-drag"
           />
         )}
       </View>
