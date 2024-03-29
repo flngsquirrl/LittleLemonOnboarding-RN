@@ -200,7 +200,7 @@ const MenuScreen = ({ navigation }) => {
         />
         <FlatListItemSeparator />
         {isLoading ? (
-          <ActivityIndicator />
+          <ActivityIndicator style={styles.activityIndicator} />
         ) : (
           <FlatList
             data={menuItems}
@@ -233,6 +233,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 15,
     right: 15,
+  },
+  activityIndicator: {
+    marginTop: 15,
   },
 });
 
