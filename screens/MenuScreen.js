@@ -203,7 +203,6 @@ const MenuScreen = ({ navigation }) => {
           <ActivityIndicator />
         ) : (
           <FlatList
-            style={styles.list}
             data={menuItems}
             keyExtractor={(item) => item.id}
             renderItem={renderItem}
