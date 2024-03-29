@@ -10,6 +10,8 @@ import {
   ActivityIndicator,
   FlatList,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 
 import Avatar from '../components/Avatar';
@@ -179,25 +181,31 @@ const MenuScreen = ({ navigation }) => {
 
   return (
     <>
-      <HeroBlock />
-      <MenuAvatar />
-      <View style={styles.searchContainer}>
-        <View style={searchBoxStyles.container}>
-          <Ionicons name="search" size={20} style={searchBoxStyles.icon} />
-          <TextInput
-            style={searchBoxStyles.input}
-            value={searchText}
-            onChangeText={handleSearchChange}
-            clearButtonMode="always"
-          />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View>
+          <HeroBlock />
+          <MenuAvatar />
+          <View style={styles.searchContainer}>
+            <View style={searchBoxStyles.container}>
+              <Ionicons name="search" size={20} style={searchBoxStyles.icon} />
+              <TextInput
+                style={searchBoxStyles.input}
+                value={searchText}
+                onChangeText={handleSearchChange}
+                clearButtonMode="always"
+              />
+            </View>
+          </View>
+          <View style={styles.categoriesContainer}>
+            <CategoryFilter
+              categories={dataConsts.MENU_CATEGORIES}
+              selections={selections}
+              onChange={handleSelectionsChange}
+            />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
       <View style={styles.container}>
-        <CategoryFilter
-          categories={dataConsts.MENU_CATEGORIES}
-          selections={selections}
-          onChange={handleSelectionsChange}
-        />
         <FlatListItemSeparator />
         {isLoading ? (
           <ActivityIndicator style={styles.activityIndicator} />
@@ -224,7 +232,10 @@ const styles = StyleSheet.create({
   },
   container: {
     ...screenContainer,
-    flex: 1,
+  },
+  categoriesContainer: {
+    ...screenContainer,
+    paddingBottom: 0,
   },
   title: {
     fontSize: 30,

@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: 'row',
-    marginBottom: 10,
   },
   item: {
     padding: 5,
