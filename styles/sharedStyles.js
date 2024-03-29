@@ -69,9 +69,13 @@ export const checkBox = {
 };
 
 export const screenContainer = {
+  backgroundColor: AppColors.white,
+};
+
+export const contentContainer = {
+  ...screenContainer,
   paddingTop: 15,
   paddingHorizontal: 15,
-  backgroundColor: AppColors.white,
 };
 
 export const iconTextButton = {
