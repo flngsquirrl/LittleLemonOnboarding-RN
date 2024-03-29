@@ -1,6 +1,6 @@
 import Checkbox from 'expo-checkbox';
 import { useState, useContext } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import Button from '../components/Button';
 import InfoField from '../components/InfoField';
@@ -83,33 +83,35 @@ const ProfileScreen = () => {
   return (
     <View style={styles.screenContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.avatar}>
-          <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
-        </View>
-        <InfoField
-          value={profile.firstName}
-          label="First name*"
-          onChangeText={(value) => setProfile({ ...profile, firstName: value })}
-        />
-        <InfoField
-          value={profile.lastName}
-          label="Last name"
-          onChangeText={(value) => setProfile({ ...profile, lastName: value })}
-        />
-        <InfoField
-          value={profile.email}
-          label="Email*"
-          onChangeText={(value) => setProfile({ ...profile, email: value })}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        <InfoField
-          value={profile.phoneNumber}
-          label="Phone number"
-          onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
-          keyboardType="number-pad"
-          mask="(999) 999-9999"
-        />
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset="100">
+          <View style={styles.avatar}>
+            <ProfileAvatar profile={profile} onChange={handleAvatarChange} />
+          </View>
+          <InfoField
+            value={profile.firstName}
+            label="First name*"
+            onChangeText={(value) => setProfile({ ...profile, firstName: value })}
+          />
+          <InfoField
+            value={profile.lastName}
+            label="Last name"
+            onChangeText={(value) => setProfile({ ...profile, lastName: value })}
+          />
+          <InfoField
+            value={profile.email}
+            label="Email*"
+            onChangeText={(value) => setProfile({ ...profile, email: value })}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+          <InfoField
+            value={profile.phoneNumber}
+            label="Phone number"
+            onChangeText={(value) => setProfile({ ...profile, phoneNumber: value })}
+            keyboardType="number-pad"
+            mask="(999) 999-9999"
+          />
+        </KeyboardAvoidingView>
         <View style={styles.separator} />
         <NotificationsBlock />
         <View style={styles.buttonsContainer}>

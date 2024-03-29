@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 
 import Button from '../components/Button';
 import HeroBlock from '../components/HeroBlock';
@@ -25,29 +25,31 @@ const OnboardingScreen = () => {
   const isDataValid = isFirstNameValid && isEmailValid;
 
   return (
-    <>
-      <HeroBlock />
-      <View style={screenContainer}>
-        <Text style={blockTitle}>Let us get to know you</Text>
-        <InfoField
-          value={firstName}
-          label="First name*"
-          valid={isFirstNameValid}
-          onChangeText={setFirstName}
-        />
-        <InfoField
-          value={email}
-          label="Email*"
-          valid={isEmailValid}
-          keyboardType="email-address"
-          onChangeText={setEmail}
-          autoCapitalize="none"
-        />
-        <View style={styles.buttonContainer}>
-          <Button title="Menu" enabled={isDataValid} onPress={processUserData} />
+    <ScrollView>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset="100">
+        <HeroBlock />
+        <View style={screenContainer}>
+          <Text style={blockTitle}>Let us get to know you</Text>
+          <InfoField
+            value={firstName}
+            label="First name*"
+            valid={isFirstNameValid}
+            onChangeText={setFirstName}
+          />
+          <InfoField
+            value={email}
+            label="Email*"
+            valid={isEmailValid}
+            keyboardType="email-address"
+            onChangeText={setEmail}
+            autoCapitalize="none"
+          />
+          <View style={styles.buttonContainer}>
+            <Button title="Menu" enabled={isDataValid} onPress={processUserData} />
+          </View>
         </View>
-      </View>
-    </>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
