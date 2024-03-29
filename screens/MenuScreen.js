@@ -168,7 +168,7 @@ const MenuScreen = ({ navigation }) => {
     return <View style={menuStyles.separator} />;
   };
 
-  const MenuAvatar = () => {
+  const MenuAvatar = useCallback(() => {
     return (
       <TouchableOpacity
         style={styles.avatar}
@@ -177,7 +177,7 @@ const MenuScreen = ({ navigation }) => {
         <Avatar imagePath={user.avatarPath} substitutionText={initials} size={50} />
       </TouchableOpacity>
     );
-  };
+  }, [initials, navigation, user.avatarPath]);
 
   return (
     <>
