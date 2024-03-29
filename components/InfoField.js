@@ -21,6 +21,7 @@ const InfoField = ({
         onChangeText={onChangeText}
         mask={mask}
         autoCapitalize={autoCapitalize}
+        clearButtonMode="always"
       />
     </View>
   );
