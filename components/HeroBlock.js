@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import { title, subtitle, leadText, screenContainer } from '../styles/sharedStyles';
+import { title, subtitle, leadText, contentContainer } from '../styles/sharedStyles';
 import { AppColors } from '../styles/styleGuide';
 
 const introText =
@@ -24,7 +24,7 @@ const HeroBlock = () => {
 
 const styles = StyleSheet.create({
   container: {
-    ...screenContainer,
+    ...contentContainer,
     backgroundColor: AppColors.darkGreen,
     paddingBottom: 15,
   },

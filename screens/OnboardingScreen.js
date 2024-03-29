@@ -6,7 +6,7 @@ import HeroBlock from '../components/HeroBlock';
 import InfoField from '../components/InfoField';
 import UserContext from '../contexts/UserContext';
 import { saveUser } from '../persistence/userStorage';
-import { blockTitle, screenContainer } from '../styles/sharedStyles';
+import { blockTitle, contentContainer, screenContainer } from '../styles/sharedStyles';
 import * as userUtils from '../utils/userUtils';
 
 const OnboardingScreen = () => {
@@ -25,10 +25,10 @@ const OnboardingScreen = () => {
   const isDataValid = isFirstNameValid && isEmailValid;
 
   return (
-    <ScrollView>
+    <ScrollView style={screenContainer}>
       <KeyboardAvoidingView behavior="position" keyboardVerticalOffset="100">
         <HeroBlock />
-        <View style={screenContainer}>
+        <View style={contentContainer}>
           <Text style={blockTitle}>Let us get to know you</Text>
           <InfoField
             value={firstName}

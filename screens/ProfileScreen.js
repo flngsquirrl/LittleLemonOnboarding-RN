@@ -8,7 +8,7 @@ import ProfileAvatar from '../components/ProfileAvatar';
 import UserContext from '../contexts/UserContext';
 import { saveUserAvatar, deleteUserAvatar } from '../persistence/userFileStorage';
 import { saveUser, deleteUser } from '../persistence/userStorage';
-import { screenContainer, checkBox, blockTitle } from '../styles/sharedStyles';
+import { contentContainer, checkBox, blockTitle } from '../styles/sharedStyles';
 import { colorGuide } from '../styles/styleGuide';
 import * as userUtils from '../utils/userUtils';
 
@@ -81,7 +81,7 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={styles.screenContainer}>
+    <View style={styles.contentContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset="100">
           <View style={styles.avatar}>
@@ -137,8 +137,8 @@ const ButtonWrapper = (props) => {
 };
 
 const styles = StyleSheet.create({
-  screenContainer: {
-    ...screenContainer,
+  contentContainer: {
+    ...contentContainer,
     paddingTop: 0,
     flex: 1,
   },

@@ -29,7 +29,7 @@ import {
 import {
   input,
   inputContainer,
-  screenContainer,
+  contentContainer,
   blockTitle,
   paragraph,
 } from '../styles/sharedStyles';
@@ -231,11 +231,11 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   container: {
-    ...screenContainer,
+    ...contentContainer,
     flex: 1,
   },
   categoriesContainer: {
-    ...screenContainer,
+    ...contentContainer,
     paddingBottom: 0,
   },
   title: {
