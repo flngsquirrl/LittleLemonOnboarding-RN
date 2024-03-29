@@ -11,7 +11,6 @@ const InfoField = ({
   autoCapitalize = 'sentences',
   onChangeText,
 }) => {
-  console.log(autoCapitalize);
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
