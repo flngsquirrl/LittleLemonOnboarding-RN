@@ -17,7 +17,7 @@ export function isEmailValid(email) {
 }
 
 export function isPhoneNumberValid(phoneNumber) {
-  return unmaskPhoneNumber(phoneNumber).length === 10;
+  return !phoneNumber || unmaskPhoneNumber(phoneNumber).length === 10;
 }
 
 export function unmaskPhoneNumber(phoneNumber) {

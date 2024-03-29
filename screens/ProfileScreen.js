@@ -22,8 +22,13 @@ const ProfileScreen = () => {
   const isDataValid = isFirstNameValid && isEmailValid && isPhoneNumberValid;
 
   const saveChanges = async () => {
-    const unmaskedPhoneNumber = userUtils.unmaskPhoneNumber(profile.phoneNumber);
-    let updatedUser = { ...profile, phoneNumber: unmaskedPhoneNumber };
+    let phoneNumberToSave;
+    if (profile.phoneNumber) {
+      phoneNumberToSave = userUtils.unmaskPhoneNumber(profile.phoneNumber);
+    } else {
+      phoneNumberToSave = profile.phoneNumber;
+    }
+    let updatedUser = { ...profile, phoneNumber: phoneNumberToSave };
     if (profile.hasAvatar) {
       const userAvatarPath = await saveUserAvatar(profile.avatarPath);
       updatedUser = { ...updatedUser, avatarPath: userAvatarPath };
