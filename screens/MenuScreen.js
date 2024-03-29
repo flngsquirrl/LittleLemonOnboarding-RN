@@ -16,7 +16,7 @@ import Avatar from '../components/Avatar';
 import CategoryFilter from '../components/CategoryFilter';
 import HeroBlock from '../components/HeroBlock';
 import UserContext from '../contexts/UserContext';
-import * as DataConsts from '../data/dataConsts';
+import * as dataConsts from '../data/dataConsts';
 import { getMenuItems, getMenuItemImageUrl } from '../network/menuRequests';
 import * as DBService from '../persistence/dbService';
 import {
@@ -41,7 +41,7 @@ const MenuScreen = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [query, setQuery] = useState('');
-  const [selections, setSelections] = useState(DataConsts.MENU_CATEGORIES.map((item) => false));
+  const [selections, setSelections] = useState(dataConsts.MENU_CATEGORIES.map((item) => false));
 
   const initials = getInitials(user.firstName, user.lastName);
 
@@ -68,7 +68,7 @@ const MenuScreen = ({ navigation }) => {
   const handleFilterChange = useCallback(async () => {
     if (!isLoading) {
       const hasNoSelection = selections.every((item) => item === false);
-      const activeCategories = DataConsts.MENU_CATEGORIES.filter((_category, index) => {
+      const activeCategories = dataConsts.MENU_CATEGORIES.filter((_category, index) => {
         return hasNoSelection ? true : selections[index];
       });
       const filteredMenuItems = await DBService.filterByNameAndCategories(query, activeCategories);
@@ -93,7 +93,7 @@ const MenuScreen = ({ navigation }) => {
 
   const preprocessMenuItems = (items) => {
     items.forEach((item) => {
-      if (!DataConsts.MISSING_IMAGES.get(item.image)) {
+      if (!dataConsts.MISSING_IMAGES.get(item.image)) {
         item.imagePath = getMenuItemImagePath(item.image);
       }
     });
@@ -106,7 +106,7 @@ const MenuScreen = ({ navigation }) => {
     await prepareMenuDirectory();
 
     const downloadPromises = items.map(async (item) => {
-      if (DataConsts.MISSING_IMAGES.get(item.image)) {
+      if (dataConsts.MISSING_IMAGES.get(item.image)) {
         console.debug('Missing image will be read from assets', item.image);
       } else {
         const imageUrl = getMenuItemImageUrl(item.image);
@@ -121,7 +121,7 @@ const MenuScreen = ({ navigation }) => {
   const MenuItem = useCallback(({ name, price, description, image, imagePath }) => {
     let imageSource;
     if (!imagePath) {
-      imageSource = DataConsts.MISSING_IMAGES.get(image);
+      imageSource = dataConsts.MISSING_IMAGES.get(image);
     }
     return (
       <View style={menuStyles.container}>
@@ -194,7 +194,7 @@ const MenuScreen = ({ navigation }) => {
       </View>
       <View style={styles.container}>
         <CategoryFilter
-          categories={DataConsts.MENU_CATEGORIES}
+          categories={dataConsts.MENU_CATEGORIES}
           selections={selections}
           onChange={handleSelectionsChange}
         />
