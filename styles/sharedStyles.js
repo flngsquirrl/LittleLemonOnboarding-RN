@@ -69,7 +69,8 @@ export const checkBox = {
 };
 
 export const screenContainer = {
-  padding: 15,
+  paddingTop: 15,
+  paddingHorizontal: 15,
 };
 
 export const iconTextButton = {
