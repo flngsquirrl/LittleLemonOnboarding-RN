@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   container: {
     ...screenContainer,
     backgroundColor: AppColors.darkGreen,
+    paddingBottom: 15,
   },
   title: {
     lineHeight: 50,
