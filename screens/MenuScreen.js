@@ -13,6 +13,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Avatar from '../components/Avatar';
 import CategoryFilter from '../components/CategoryFilter';
@@ -44,6 +45,8 @@ const MenuScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
   const [query, setQuery] = useState('');
   const [selections, setSelections] = useState(dataConsts.MENU_CATEGORIES.map((item) => false));
+  const insets = useSafeAreaInsets();
+  const bottomInset = insets.bottom;
 
   const initials = getInitials(user.firstName, user.lastName);
 
@@ -217,6 +220,7 @@ const MenuScreen = ({ navigation }) => {
             ItemSeparatorComponent={FlatListItemSeparator}
             showsVerticalScrollIndicator={false}
             keyboardDismissMode="on-drag"
+            contentInset={{ bottom: bottomInset }}
           />
         )}
       </View>
