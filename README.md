@@ -5,6 +5,9 @@
 ## Description
 Capstone project for Meta React Native Specialization on Coursera.
 
+## Wireframes
+[Wireframes for this prject](assets/images/wireframes/wireframes.png) were created with Figma.
+
  ## Screens
 
 ### iOS (Simulator: iPhone 15 Pro, iOS 17.0)
