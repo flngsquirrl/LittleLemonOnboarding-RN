@@ -232,6 +232,7 @@ const styles = StyleSheet.create({
   },
   container: {
     ...screenContainer,
+    flex: 1,
   },
   categoriesContainer: {
     ...screenContainer,
