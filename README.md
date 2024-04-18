@@ -6,7 +6,7 @@
 Capstone project for Meta React Native Specialization on Coursera.
 
 ## Wireframes
-[Wireframes for this prject](assets/images/wireframes/wireframes.png) were created with Figma.
+[Wireframes for this project](assets/images/wireframes/wireframes.png) were created with Figma.
 
  ## Screens
 
@@ -73,7 +73,7 @@ Capstone project for Meta React Native Specialization on Coursera.
 </details>
 
 ## Implementation details
-Build with Expo and React Native libraries.
+Built with Expo and React Native libraries.
 
 ## Build instructions
 - clone the repo
